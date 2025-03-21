@@ -41,7 +41,7 @@ const ProfileSettings = ({ user }) => {
     mutationFn: updateProfile,
     onSuccess: () => {
       setSuccessMessage('Profile updated successfully!');
-      
+
       // Clear success message after 3 seconds
       setTimeout(() => {
         setSuccessMessage('');
@@ -56,7 +56,7 @@ const ProfileSettings = ({ user }) => {
   return (
     <div className="max-w-2xl mx-auto">
       <h2 className="text-lg font-medium text-gray-900 mb-6">Profile Information</h2>
-      
+
       {/* Success message */}
       {successMessage && (
         <div className="mb-6 bg-success-50 border border-success-200 rounded-lg p-4">
@@ -106,10 +106,7 @@ const ProfileSettings = ({ user }) => {
               <p className="text-sm text-gray-500 mb-2">
                 This will be displayed on your profile and throughout the app.
               </p>
-              <button
-                type="button"
-                className="btn btn-outline text-sm py-1"
-              >
+              <button type="button" className="btn btn-outline text-sm py-1">
                 Change
               </button>
             </div>
@@ -127,9 +124,7 @@ const ProfileSettings = ({ user }) => {
               placeholder="Enter your name"
               {...register('name')}
             />
-            {errors.name && (
-              <p className="mt-1 text-sm text-danger-600">{errors.name.message}</p>
-            )}
+            {errors.name && <p className="mt-1 text-sm text-danger-600">{errors.name.message}</p>}
           </div>
 
           {/* Email */}
@@ -144,9 +139,7 @@ const ProfileSettings = ({ user }) => {
               placeholder="Enter your email"
               {...register('email')}
             />
-            {errors.email && (
-              <p className="mt-1 text-sm text-danger-600">{errors.email.message}</p>
-            )}
+            {errors.email && <p className="mt-1 text-sm text-danger-600">{errors.email.message}</p>}
           </div>
 
           {/* Phone */}
@@ -161,20 +154,14 @@ const ProfileSettings = ({ user }) => {
               placeholder="Enter your phone number"
               {...register('phone')}
             />
-            {errors.phone && (
-              <p className="mt-1 text-sm text-danger-600">{errors.phone.message}</p>
-            )}
+            {errors.phone && <p className="mt-1 text-sm text-danger-600">{errors.phone.message}</p>}
           </div>
 
           {/* User Role */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Role
-            </label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Role</label>
             <div className="input w-full bg-gray-50 flex items-center">
-              <span className="capitalize">
-                {user?.role || 'User'}
-              </span>
+              <span className="capitalize">{user?.role || 'User'}</span>
             </div>
             <p className="mt-1 text-xs text-gray-500">
               Your role determines what actions you can perform in the system.
@@ -189,9 +176,13 @@ const ProfileSettings = ({ user }) => {
             disabled={updateProfileMutation.isPending || !isDirty}
           >
             {updateProfileMutation.isPending ? (
-              <><LoadingSpinner size="small" /> <span className="ml-2">Saving...</span></>
+              <>
+                <LoadingSpinner size="small" /> <span className="ml-2">Saving...</span>
+              </>
             ) : (
-              <><Save className="h-4 w-4 mr-2" /> Save Changes</>
+              <>
+                <Save className="h-4 w-4 mr-2" /> Save Changes
+              </>
             )}
           </button>
         </div>

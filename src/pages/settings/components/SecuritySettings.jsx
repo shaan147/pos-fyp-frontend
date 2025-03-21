@@ -8,20 +8,22 @@ import { Save, AlertCircle, Check, Eye, EyeOff, ShieldCheck } from 'lucide-react
 import LoadingSpinner from '@components/common/LoadingSpinner';
 
 // Define validation schema
-const passwordSchema = z.object({
-  currentPassword: z.string().min(1, 'Current password is required'),
-  newPassword: z
-    .string()
-    .min(6, 'Password must be at least 6 characters')
-    .regex(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/,
-      'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character'
-    ),
-  confirmPassword: z.string().min(1, 'Please confirm your password'),
-}).refine((data) => data.newPassword === data.confirmPassword, {
-  message: 'Passwords do not match',
-  path: ['confirmPassword'],
-});
+const passwordSchema = z
+  .object({
+    currentPassword: z.string().min(1, 'Current password is required'),
+    newPassword: z
+      .string()
+      .min(6, 'Password must be at least 6 characters')
+      .regex(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/,
+        'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character'
+      ),
+    confirmPassword: z.string().min(1, 'Please confirm your password'),
+  })
+  .refine((data) => data.newPassword === data.confirmPassword, {
+    message: 'Passwords do not match',
+    path: ['confirmPassword'],
+  });
 
 const SecuritySettings = () => {
   const { updatePassword } = useAuth();
@@ -49,10 +51,10 @@ const SecuritySettings = () => {
     mutationFn: updatePassword,
     onSuccess: () => {
       setSuccessMessage('Password updated successfully!');
-      
+
       // Reset form
       reset();
-      
+
       // Clear success message after 3 seconds
       setTimeout(() => {
         setSuccessMessage('');
@@ -67,7 +69,7 @@ const SecuritySettings = () => {
   return (
     <div className="max-w-2xl mx-auto">
       <h2 className="text-lg font-medium text-gray-900 mb-6">Security Settings</h2>
-      
+
       {/* Success message */}
       {successMessage && (
         <div className="mb-6 bg-success-50 border border-success-200 rounded-lg p-4">
@@ -107,7 +109,10 @@ const SecuritySettings = () => {
           <div className="ml-3">
             <h3 className="text-sm font-medium text-primary-800">Password Security</h3>
             <div className="mt-2 text-sm text-primary-700">
-              <p>Your password should be at least 6 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.</p>
+              <p>
+                Your password should be at least 6 characters long and contain at least one
+                uppercase letter, one lowercase letter, one number, and one special character.
+              </p>
             </div>
           </div>
         </div>
@@ -117,7 +122,10 @@ const SecuritySettings = () => {
         <div className="space-y-4">
           {/* Current Password */}
           <div>
-            <label htmlFor="currentPassword" className="block text-sm font-medium text-gray-700 mb-1">
+            <label
+              htmlFor="currentPassword"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
               Current Password <span className="text-danger-500">*</span>
             </label>
             <div className="relative">
@@ -169,7 +177,10 @@ const SecuritySettings = () => {
 
           {/* Confirm Password */}
           <div>
-            <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-1">
+            <label
+              htmlFor="confirmPassword"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
               Confirm New Password <span className="text-danger-500">*</span>
             </label>
             <div className="relative">
@@ -201,9 +212,13 @@ const SecuritySettings = () => {
             disabled={updatePasswordMutation.isPending}
           >
             {updatePasswordMutation.isPending ? (
-              <><LoadingSpinner size="small" /> <span className="ml-2">Updating...</span></>
+              <>
+                <LoadingSpinner size="small" /> <span className="ml-2">Updating...</span>
+              </>
             ) : (
-              <><Save className="h-4 w-4 mr-2" /> Update Password</>
+              <>
+                <Save className="h-4 w-4 mr-2" /> Update Password
+              </>
             )}
           </button>
         </div>

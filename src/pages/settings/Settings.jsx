@@ -1,92 +1,73 @@
 import React, { useState } from 'react';
 import { useAuth } from '@hooks/useAuth';
-import { 
-  Settings as SettingsIcon,
-  User,
-  Building,
-  CreditCard,
-  Lock,
-  Bell
-} from 'lucide-react';
-
-// Components
+import { User, Lock, ChevronRight } from 'lucide-react';
 import ProfileSettings from './components/ProfileSettings';
-import BusinessSettings from './components/BusinessSettings';
-import PaymentSettings from './components/PaymentSettings';
 import SecuritySettings from './components/SecuritySettings';
-import NotificationSettings from './components/NotificationSettings';
 
 const Settings = () => {
   const { user } = useAuth();
   const [activeTab, setActiveTab] = useState('profile');
 
-  // Settings tabs
   const tabs = [
-    { id: 'profile', label: 'Profile', icon: <User size={18} />, roles: ['admin', 'manager', 'cashier', 'customer'] },
-    { id: 'business', label: 'Business', icon: <Building size={18} />, roles: ['admin'] },
-    { id: 'payment', label: 'Payment', icon: <CreditCard size={18} />, roles: ['admin'] },
-    { id: 'security', label: 'Security', icon: <Lock size={18} />, roles: ['admin', 'manager', 'cashier', 'customer'] },
-    { id: 'notifications', label: 'Notifications', icon: <Bell size={18} />, roles: ['admin', 'manager'] }
+    {
+      id: 'profile',
+      name: 'Profile Settings',
+      icon: User,
+      component: ProfileSettings,
+      roles: ['admin', 'manager', 'cashier', 'customer'],
+    },
+    {
+      id: 'security',
+      name: 'Security Settings',
+      icon: Lock,
+      component: SecuritySettings,
+      roles: ['admin', 'manager', 'cashier', 'customer'],
+    },
   ];
 
   // Filter tabs based on user role
-  const allowedTabs = tabs.filter(tab => tab.roles.includes(user?.role || 'customer'));
-
-  // Render content based on active tab
-  const renderContent = () => {
-    switch (activeTab) {
-      case 'profile':
-        return <ProfileSettings user={user} />;
-      case 'business':
-        return <BusinessSettings />;
-      case 'payment':
-        return <PaymentSettings />;
-      case 'security':
-        return <SecuritySettings />;
-      case 'notifications':
-        return <NotificationSettings />;
-      default:
-        return <ProfileSettings user={user} />;
-    }
-  };
+  const allowedTabs = tabs.filter((tab) => tab.roles.includes(user?.role || 'customer'));
 
   return (
-    <div>
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-900 flex items-center">
-          <SettingsIcon className="h-6 w-6 mr-2 text-gray-500" />
-          Settings
-        </h1>
-        <p className="mt-1 text-gray-500">
-          Manage your account and application preferences
-        </p>
-      </div>
+    <div className="container mx-auto px-4 py-8">
+      <div className="max-w-4xl mx-auto">
+        <h1 className="text-2xl font-bold text-gray-900 mb-8">Settings</h1>
 
-      <div className="bg-white rounded-lg border shadow-sm overflow-hidden">
-        <div className="flex flex-col sm:flex-row">
-          {/* Sidebar */}
-          <div className="sm:w-60 border-b sm:border-b-0 sm:border-r">
-            <nav className="flex sm:flex-col overflow-x-auto sm:overflow-y-auto">
-              {allowedTabs.map((tab) => (
-                <button
-                  key={tab.id}
-                  className={`px-4 py-3 flex items-center space-x-3 whitespace-nowrap ${
-                    activeTab === tab.id
-                      ? 'bg-primary-50 text-primary-700 border-b-2 sm:border-b-0 sm:border-l-2 border-primary-500'
-                      : 'text-gray-700 hover:bg-gray-50'
-                  }`}
-                  onClick={() => setActiveTab(tab.id)}
-                >
-                  <span>{tab.icon}</span>
-                  <span>{tab.label}</span>
-                </button>
-              ))}
+        <div className="flex flex-col md:flex-row gap-8">
+          {/* Sidebar Navigation */}
+          <div className="w-full md:w-64">
+            <nav className="space-y-1">
+              {allowedTabs.map((tab) => {
+                const Icon = tab.icon;
+                return (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id)}
+                    className={`w-full flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors ${
+                      activeTab === tab.id
+                        ? 'bg-primary-50 text-primary-700'
+                        : 'text-gray-700 hover:bg-gray-50'
+                    }`}
+                  >
+                    <Icon className="h-5 w-5 mr-3" />
+                    {tab.name}
+                    <ChevronRight className="h-4 w-4 ml-auto" />
+                  </button>
+                );
+              })}
             </nav>
           </div>
 
-          {/* Content */}
-          <div className="flex-1 p-6">
-            {renderContent()}
+          {/* Content Area */}
+          <div className="flex-1">
+            {allowedTabs.map((tab) => {
+              const Component = tab.component;
+              return (
+                <div key={tab.id} className={activeTab === tab.id ? 'block' : 'hidden'}>
+                  <Component user={user} />
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
