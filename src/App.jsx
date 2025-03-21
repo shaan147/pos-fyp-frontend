@@ -12,14 +12,14 @@ const Login = lazy(() => import('@pages/auth/Login'));
 const Register = lazy(() => import('@pages/auth/Register'));
 const Dashboard = lazy(() => import('@pages/dashboard/Dashboard'));
 const Products = lazy(() => import('@pages/inventory/Products'));
-const ProductDetail = lazy(() => import('@pages/inventory/ProductDetail')); // Not created yet
-const AddProduct = lazy(() => import('@pages/inventory/AddProduct')); // Not created yet
-// const POS = lazy(() => import('@pages/pos/POS')); // Not created yet
-// const Orders = lazy(() => import('@pages/orders/Orders')); // Not created yet
-// const OrderDetail = lazy(() => import('@pages/orders/OrderDetail')); // Not created yet
-const Suppliers = lazy(() => import('@pages/suppliers/Suppliers')); // Not created yet
-const SupplierDetail = lazy(() => import('@pages/suppliers/SupplierDetail')); // Not created yet
-const AddSupplier = lazy(() => import('@pages/suppliers/AddSupplier')); // Not created yet
+const ProductDetail = lazy(() => import('@pages/inventory/ProductDetail'));
+const AddProduct = lazy(() => import('@pages/inventory/AddProduct'));
+const POS = lazy(() => import('@pages/pos/POS'));
+const Orders = lazy(() => import('@pages/orders/Orders'));
+const OrderDetail = lazy(() => import('@pages/orders/OrderDetail'));
+const Suppliers = lazy(() => import('@pages/suppliers/Suppliers'));
+const SupplierDetail = lazy(() => import('@pages/suppliers/SupplierDetail'));
+const AddSupplier = lazy(() => import('@pages/suppliers/AddSupplier'));
 // const Reports = lazy(() => import('@pages/reports/Reports')); // Not created yet
 // const Settings = lazy(() => import('@pages/settings/Settings')); // Not created yet
 const NotFound = lazy(() => import('@pages/NotFound'));
@@ -75,13 +75,13 @@ function App() {
           </Route>
 
           {/* POS */}
-          {/* <Route path="pos" element={<POS />} /> */}
+          <Route path="pos" element={<POS />} />
 
           {/* Orders */}
-          {/* <Route path="orders">
+          <Route path="orders">
             <Route index element={<Orders />} />
             <Route path=":id" element={<OrderDetail />} />
-          </Route> */}
+          </Route>
 
           {/* Suppliers */}
           {
