@@ -20,7 +20,7 @@ const OrderDetail = lazy(() => import('@pages/orders/OrderDetail'));
 const Suppliers = lazy(() => import('@pages/suppliers/Suppliers'));
 const SupplierDetail = lazy(() => import('@pages/suppliers/SupplierDetail'));
 const AddSupplier = lazy(() => import('@pages/suppliers/AddSupplier'));
-// const Reports = lazy(() => import('@pages/reports/Reports')); // Not created yet
+const Reports = lazy(() => import('@pages/reports/Reports')); 
 const Settings = lazy(() => import('@pages/settings/Settings'));
 const NotFound = lazy(() => import('@pages/NotFound'));
 
@@ -93,7 +93,7 @@ function App() {
           }
 
           {/* Reports */}
-          {/* <Route path="reports" element={<Reports />} /> */}
+          <Route path="reports" element={<Reports />} />
 
           {/* Settings */}
           <Route path="settings" element={<Settings />} />
