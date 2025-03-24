@@ -24,7 +24,7 @@ const OrderFilters = ({ filters, onChange, onDateChange }) => {
       <div className="relative flex-1">
         <select
           name="orderStatus"
-          className="input w-full appearance-none pl-10"
+          className="input w-full appearance-none pl-10 dark:bg-dark-card dark:border-gray-700 dark:text-dark-text-primary"
           value={filters.orderStatus}
           onChange={onChange}
         >
@@ -36,7 +36,7 @@ const OrderFilters = ({ filters, onChange, onDateChange }) => {
           ))}
         </select>
         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-          <Clock className="h-5 w-5 text-gray-400" />
+          <Clock className="h-5 w-5 text-gray-400 dark:text-gray-500" />
         </div>
       </div>
 
@@ -44,7 +44,7 @@ const OrderFilters = ({ filters, onChange, onDateChange }) => {
       <div className="relative flex-1">
         <select
           name="paymentStatus"
-          className="input w-full appearance-none pl-10"
+          className="input w-full appearance-none pl-10 dark:bg-dark-card dark:border-gray-700 dark:text-dark-text-primary"
           value={filters.paymentStatus}
           onChange={onChange}
         >
@@ -56,7 +56,7 @@ const OrderFilters = ({ filters, onChange, onDateChange }) => {
           ))}
         </select>
         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-          <CreditCard className="h-5 w-5 text-gray-400" />
+          <CreditCard className="h-5 w-5 text-gray-400 dark:text-gray-500" />
         </div>
       </div>
 
@@ -64,7 +64,7 @@ const OrderFilters = ({ filters, onChange, onDateChange }) => {
       <div className="relative flex-1">
         <select
           name="dateRange"
-          className="input w-full appearance-none pl-10"
+          className="input w-full appearance-none pl-10 dark:bg-dark-card dark:border-gray-700 dark:text-dark-text-primary"
           value={
             filters.startDate 
               ? 'custom' 
@@ -111,7 +111,7 @@ const OrderFilters = ({ filters, onChange, onDateChange }) => {
           {(filters.startDate || filters.endDate) && <option value="custom">Custom Range</option>}
         </select>
         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-          <CalendarRange className="h-5 w-5 text-gray-400" />
+          <CalendarRange className="h-5 w-5 text-gray-400 dark:text-gray-500" />
         </div>
       </div>
     </div>

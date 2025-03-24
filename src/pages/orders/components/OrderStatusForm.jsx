@@ -45,16 +45,18 @@ const OrderStatusForm = ({ order, onSubmit, onCancel, isSubmitting }) => {
       <div className="space-y-4">
         {/* Order Status */}
         <div>
-          <label htmlFor="orderStatus" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="orderStatus" className="block text-sm font-medium text-gray-700 dark:text-dark-text-primary mb-1">
             Order Status <span className="text-danger-500">*</span>
           </label>
           <div className="relative">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <Clock className="h-5 w-5 text-gray-400" />
+              <Clock className="h-5 w-5 text-gray-400 dark:text-gray-500" />
             </div>
             <select
               id="orderStatus"
-              className={`input pl-10 w-full ${errors.orderStatus ? 'border-danger-500 focus-visible:ring-danger-500' : ''}`}
+              className={`input pl-10 w-full dark:bg-dark-card dark:border-gray-700 dark:text-dark-text-primary ${
+                errors.orderStatus ? 'border-danger-500 focus-visible:ring-danger-500 dark:border-danger-500 dark:focus-visible:ring-danger-500' : ''
+              }`}
               {...register('orderStatus')}
             >
               {orderStatusOptions.map((status) => (
@@ -65,22 +67,24 @@ const OrderStatusForm = ({ order, onSubmit, onCancel, isSubmitting }) => {
             </select>
           </div>
           {errors.orderStatus && (
-            <p className="mt-1 text-sm text-danger-600">{errors.orderStatus.message}</p>
+            <p className="mt-1 text-sm text-danger-600 dark:text-danger-400">{errors.orderStatus.message}</p>
           )}
         </div>
 
         {/* Payment Status */}
         <div>
-          <label htmlFor="paymentStatus" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="paymentStatus" className="block text-sm font-medium text-gray-700 dark:text-dark-text-primary mb-1">
             Payment Status <span className="text-danger-500">*</span>
           </label>
           <div className="relative">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <CreditCard className="h-5 w-5 text-gray-400" />
+              <CreditCard className="h-5 w-5 text-gray-400 dark:text-gray-500" />
             </div>
             <select
               id="paymentStatus"
-              className={`input pl-10 w-full ${errors.paymentStatus ? 'border-danger-500 focus-visible:ring-danger-500' : ''}`}
+              className={`input pl-10 w-full dark:bg-dark-card dark:border-gray-700 dark:text-dark-text-primary ${
+                errors.paymentStatus ? 'border-danger-500 focus-visible:ring-danger-500 dark:border-danger-500 dark:focus-visible:ring-danger-500' : ''
+              }`}
               {...register('paymentStatus')}
             >
               {paymentStatusOptions.map((status) => (
@@ -91,29 +95,29 @@ const OrderStatusForm = ({ order, onSubmit, onCancel, isSubmitting }) => {
             </select>
           </div>
           {errors.paymentStatus && (
-            <p className="mt-1 text-sm text-danger-600">{errors.paymentStatus.message}</p>
+            <p className="mt-1 text-sm text-danger-600 dark:text-danger-400">{errors.paymentStatus.message}</p>
           )}
         </div>
 
         {/* Status Change Notes */}
         <div>
-          <label htmlFor="notes" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="notes" className="block text-sm font-medium text-gray-700 dark:text-dark-text-primary mb-1">
             Status Change Notes
           </label>
           <textarea
             id="notes"
             rows={3}
-            className="input w-full"
+            className="input w-full dark:bg-dark-card dark:border-gray-700 dark:text-dark-text-primary dark:placeholder-gray-500"
             placeholder="Optional notes about the status change"
           />
         </div>
 
         {/* Form Actions */}
-        <div className="flex justify-end space-x-3 pt-4 mt-4 border-t border-gray-200">
+        <div className="flex justify-end space-x-3 pt-4 mt-4 border-t border-gray-200 dark:border-gray-700">
           <button
             type="button"
             onClick={onCancel}
-            className="btn btn-default px-4 py-2"
+            className="btn btn-default px-4 py-2 dark:bg-dark-card dark:border-gray-700 dark:text-dark-text-primary"
           >
             Cancel
           </button>

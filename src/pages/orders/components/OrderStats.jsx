@@ -25,16 +25,16 @@ const OrderStats = ({ analytics }) => {
   };
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 dark:bg-dark-bg">
       {/* Total Orders */}
-      <div className="bg-white p-6 rounded-lg border shadow-sm">
+      <div className="bg-white dark:bg-dark-card rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm p-6">
         <div className="flex items-center">
-          <div className="p-2 rounded-full bg-primary-100 text-primary-600 mr-3">
+          <div className="p-2 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-300 mr-3">
             <ShoppingCart size={20} />
           </div>
           <div>
-            <p className="text-sm font-medium text-gray-500">Total Orders</p>
-            <p className="text-2xl font-semibold">{totalOrders}</p>
+            <p className="text-sm font-medium text-gray-500 dark:text-dark-text-secondary">Total Orders</p>
+            <p className="text-2xl font-semibold text-gray-900 dark:text-dark-text-primary">{totalOrders}</p>
           </div>
         </div>
         <div className="mt-4 grid grid-cols-2 gap-2 text-xs">
@@ -48,32 +48,32 @@ const OrderStats = ({ analytics }) => {
       </div>
 
       {/* Total Revenue */}
-      <div className="bg-white p-6 rounded-lg border shadow-sm">
+      <div className="bg-white dark:bg-dark-card rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm p-6">
         <div className="flex items-center">
           <div className="p-2 rounded-full bg-success-100 text-success-600 mr-3">
             <CircleDollarSign size={20} />
           </div>
           <div>
-            <p className="text-sm font-medium text-gray-500">Total Revenue</p>
-            <p className="text-2xl font-semibold">{formatCurrency(revenue)}</p>
+            <p className="text-sm font-medium text-gray-500 dark:text-dark-text-secondary">Total Revenue</p>
+            <p className="text-2xl font-semibold text-gray-900 dark:text-dark-text-primary">{formatCurrency(revenue)}</p>
           </div>
         </div>
         <div className="mt-4">
-          <p className="text-xs text-gray-500">
-            Average order value: <span className="font-medium">{formatCurrency(avgOrderValue)}</span>
+          <p className="text-xs text-gray-500 dark:text-dark-text-secondary">
+            Average order value: <span className="font-medium text-gray-900 dark:text-dark-text-primary">{formatCurrency(avgOrderValue)}</span>
           </p>
         </div>
       </div>
 
       {/* Payment Methods */}
-      <div className="bg-white p-6 rounded-lg border shadow-sm">
+      <div className="bg-white dark:bg-dark-card rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm p-6">
         <div className="flex items-center">
           <div className="p-2 rounded-full bg-warning-100 text-warning-600 mr-3">
             <CreditCard size={20} />
           </div>
           <div>
-            <p className="text-sm font-medium text-gray-500">Payment Methods</p>
-            <p className="text-2xl font-semibold">{ordersByPaymentMethod.length}</p>
+            <p className="text-sm font-medium text-gray-500 dark:text-dark-text-secondary">Payment Methods</p>
+            <p className="text-2xl font-semibold text-gray-900 dark:text-dark-text-primary">{ordersByPaymentMethod.length}</p>
           </div>
         </div>
         <div className="mt-4 grid grid-cols-2 gap-2 text-xs">
@@ -87,22 +87,22 @@ const OrderStats = ({ analytics }) => {
       </div>
 
       {/* Order Status */}
-      <div className="bg-white p-6 rounded-lg border shadow-sm">
+      <div className="bg-white dark:bg-dark-card rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm p-6">
         <div className="flex items-center">
           <div className="p-2 rounded-full bg-secondary-100 text-secondary-600 mr-3">
             <Users size={20} />
           </div>
           <div>
-            <p className="text-sm font-medium text-gray-500">Customer Orders</p>
-            <p className="text-2xl font-semibold">{totalOrders}</p>
+            <p className="text-sm font-medium text-gray-500 dark:text-dark-text-secondary">Customer Orders</p>
+            <p className="text-2xl font-semibold text-gray-900 dark:text-dark-text-primary">{totalOrders}</p>
           </div>
         </div>
         <div className="mt-4 grid grid-cols-2 gap-2 text-xs">
           <div className="text-danger-700 bg-danger-50 px-2 py-1 rounded-md">
-            <span className="font-medium">{getStatusCount('cancelled')}</span> Cancelled
+            <span className="font-medium text-gray-900 dark:text-dark-text-primary">{getStatusCount('cancelled')}</span> Cancelled
           </div>
           <div className="text-info-700 bg-info-50 px-2 py-1 rounded-md">
-            <span className="font-medium">{getStatusCount('processing')}</span> Processing
+            <span className="font-medium text-gray-900 dark:text-dark-text-primary">{getStatusCount('processing')}</span> Processing
           </div>
         </div>
       </div>
