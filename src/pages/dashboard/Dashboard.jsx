@@ -59,26 +59,26 @@ const Dashboard = () => {
   });
   
   const StatCard = ({ title, value, icon, description, trend, color }) => (
-    <div className="bg-white rounded-lg shadow-sm p-6 border">
+    <div className="bg-white dark:bg-dark-card rounded-lg shadow-sm p-6 border dark:border-dark-border">
       <div className="flex justify-between items-start">
         <div>
-          <p className="text-sm font-medium text-gray-500">{title}</p>
-          <h3 className="text-2xl font-bold mt-1">
+          <p className="text-sm font-medium text-gray-500 dark:text-dark-text-secondary">{title}</p>
+          <h3 className="text-2xl font-bold mt-1 text-gray-900 dark:text-dark-text-primary">
             {typeof value === 'number' ? value.toLocaleString() : value}
           </h3>
         </div>
-        <div className={`p-3 rounded-full bg-${color}-100 text-${color}-600`}>
+        <div className={`p-3 rounded-full bg-${color}-100 dark:bg-${color}-900/30 text-${color}-600 dark:text-${color}-300`}>
           {icon}
         </div>
       </div>
       <div className="flex items-center mt-4">
         {trend && (
-          <span className={`inline-flex items-center text-sm mr-2 ${trend > 0 ? 'text-success-600' : 'text-danger-600'}`}>
+          <span className={`inline-flex items-center text-sm mr-2 ${trend > 0 ? 'text-success-600 dark:text-success-300' : 'text-danger-600 dark:text-danger-300'}`}>
             {trend > 0 ? <TrendingUp size={16} className="mr-1" /> : <TrendingDown size={16} className="mr-1" />}
             {Math.abs(trend)}%
           </span>
         )}
-        <p className="text-xs text-gray-500">{description}</p>
+        <p className="text-xs text-gray-500 dark:text-dark-text-muted">{description}</p>
       </div>
     </div>
   );
@@ -87,14 +87,14 @@ const Dashboard = () => {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
-          <p className="text-gray-500 mt-1">Welcome back, {user?.name || 'User'}</p>
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-dark-text-primary">Dashboard</h1>
+          <p className="text-gray-500 dark:text-dark-text-secondary mt-1">Welcome back, {user?.name || 'User'}</p>
         </div>
         <div className="flex space-x-2">
           <select
             value={dateRange}
             onChange={(e) => setDateRange(e.target.value)}
-            className="input h-9 rounded-md border-gray-300"
+            className="input h-9 rounded-md border-gray-300 dark:border-dark-border"
           >
             <option value="week">Last 7 days</option>
             <option value="month">Last 30 days</option>
@@ -146,14 +146,14 @@ const Dashboard = () => {
       
       {/* Low Stock Alert */}
       {['admin', 'manager'].includes(user?.role || '') && (
-        <div className="bg-warning-50 border border-warning-200 rounded-lg p-4">
+        <div className="bg-warning-50 dark:bg-warning-900/30 border border-warning-200 dark:border-warning-800 rounded-lg p-4">
           <div className="flex">
             <div className="flex-shrink-0">
-              <AlertCircle className="h-5 w-5 text-warning-400" />
+              <AlertCircle className="h-5 w-5 text-warning-400 dark:text-warning-300" />
             </div>
             <div className="ml-3">
-              <h3 className="text-sm font-medium text-warning-800">Low Stock Alert</h3>
-              <div className="mt-2 text-sm text-warning-700">
+              <h3 className="text-sm font-medium text-warning-800 dark:text-warning-200">Low Stock Alert</h3>
+              <div className="mt-2 text-sm text-warning-700 dark:text-warning-300">
                 {isLoadingLowStock ? (
                   <span>Loading low stock items...</span>
                 ) : (
@@ -162,7 +162,7 @@ const Dashboard = () => {
                       ? `${lowStockProducts.count} products need restocking.`
                       : 'All products are well-stocked.'}
                     {lowStockProducts?.count > 0 && (
-                      <Link to="/products/lowstock" className="ml-1 font-medium underline">
+                      <Link to="/products/lowstock" className="ml-1 font-medium underline text-warning-800 dark:text-warning-200">
                         View all
                       </Link>
                     )}
@@ -176,20 +176,20 @@ const Dashboard = () => {
       
       {/* Charts */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 bg-white rounded-lg shadow-sm p-6 border">
+        <div className="lg:col-span-2 bg-white dark:bg-dark-card rounded-lg shadow-sm p-6 border dark:border-dark-border">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-lg font-semibold text-gray-900">Sales Overview</h2>
-            <Link to="/reports" className="text-sm font-medium text-primary-600 flex items-center">
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-dark-text-primary">Sales Overview</h2>
+            <Link to="/reports" className="text-sm font-medium text-primary-600 dark:text-primary-400 flex items-center">
               View full report <ArrowUpRight size={14} className="ml-1" />
             </Link>
           </div>
           <SalesChart dateRange={dateRange} />
         </div>
         
-        <div className="bg-white rounded-lg shadow-sm p-6 border">
+        <div className="bg-white dark:bg-dark-card rounded-lg shadow-sm p-6 border dark:border-dark-border">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-lg font-semibold text-gray-900">Top Selling Products</h2>
-            <Link to="/products" className="text-sm font-medium text-primary-600 flex items-center">
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-dark-text-primary">Top Selling Products</h2>
+            <Link to="/products" className="text-sm font-medium text-primary-600 dark:text-primary-400 flex items-center">
               View all <ArrowUpRight size={14} className="ml-1" />
             </Link>
           </div>
@@ -198,10 +198,10 @@ const Dashboard = () => {
       </div>
       
       {/* Recent Orders */}
-      <div className="bg-white rounded-lg shadow-sm p-6 border">
+      <div className="bg-white dark:bg-dark-card rounded-lg shadow-sm p-6 border dark:border-dark-border">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-lg font-semibold text-gray-900">Recent Orders</h2>
-          <Link to="/orders" className="text-sm font-medium text-primary-600 flex items-center">
+          <h2 className="text-lg font-semibold text-gray-900 dark:text-dark-text-primary">Recent Orders</h2>
+          <Link to="/orders" className="text-sm font-medium text-primary-600 dark:text-primary-400 flex items-center">
             View all <ArrowUpRight size={14} className="ml-1" />
           </Link>
         </div>

@@ -4,6 +4,7 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: 'class', // Enable class-based dark mode
   theme: {
     extend: {
       colors: {
@@ -72,6 +73,19 @@ export default {
           900: '#78350f',
           950: '#451a03',
         },
+        // Dark mode specific colors
+        dark: {
+          bg: '#121212',
+          card: '#1e1e1e',
+          border: '#2e2e2e',
+          primary: '#0ea5e9',
+          secondary: '#8b5cf6',
+          text: {
+            primary: '#f3f4f6',
+            secondary: '#9ca3af',
+            muted: '#6b7280',
+          },
+        },
       },
       fontFamily: {
         sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'sans-serif'],
@@ -79,6 +93,8 @@ export default {
       boxShadow: {
         card: '0 0 0 1px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1)',
         dropdown: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+        'dark-card': '0 0 0 1px rgba(255, 255, 255, 0.05), 0 1px 3px rgba(0, 0, 0, 0.2)',
+        'dark-dropdown': '0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3)',
       },
       screens: {
         'xs': '480px',

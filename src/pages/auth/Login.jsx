@@ -54,12 +54,12 @@ const Login = () => {
   return (
     <div>
       <div className="mb-8 text-center">
-        <h1 className="text-2xl font-bold text-gray-900">Welcome back</h1>
-        <p className="mt-2 text-sm text-gray-600">Sign in to your account to continue</p>
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-dark-text-primary">Welcome back</h1>
+        <p className="mt-2 text-sm text-gray-600 dark:text-dark-text-secondary">Sign in to your account to continue</p>
       </div>
 
       {loginError && (
-        <div className="mb-4 p-3 bg-danger-50 border border-danger-200 text-danger-700 rounded-md flex items-center">
+        <div className="mb-4 p-3 bg-danger-50 dark:bg-danger-900/30 border border-danger-200 dark:border-danger-800 text-danger-700 dark:text-danger-300 rounded-md flex items-center">
           <AlertCircle size={16} className="mr-2 flex-shrink-0" />
           <span className="text-sm">{loginError}</span>
         </div>
@@ -67,43 +67,43 @@ const Login = () => {
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-dark-text-primary mb-1">
             Email
           </label>
           <input
             id="email"
             type="email"
-            className={`input w-full ${errors.email ? 'border-danger-500 focus-visible:ring-danger-500' : ''}`}
+            className={`input w-full ${errors.email ? 'border-danger-500 focus-visible:ring-danger-500 dark:border-danger-500 dark:focus-visible:ring-danger-500' : ''}`}
             placeholder="Enter your email"
             {...register('email')}
           />
           {errors.email && (
-            <p className="mt-1 text-sm text-danger-600">{errors.email.message}</p>
+            <p className="mt-1 text-sm text-danger-600 dark:text-danger-400">{errors.email.message}</p>
           )}
         </div>
 
         <div>
-          <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-dark-text-primary mb-1">
             Password
           </label>
           <div className="relative">
             <input
               id="password"
               type={showPassword ? 'text' : 'password'}
-              className={`input w-full pr-10 ${errors.password ? 'border-danger-500 focus-visible:ring-danger-500' : ''}`}
+              className={`input w-full pr-10 ${errors.password ? 'border-danger-500 focus-visible:ring-danger-500 dark:border-danger-500 dark:focus-visible:ring-danger-500' : ''}`}
               placeholder="Enter your password"
               {...register('password')}
             />
             <button
               type="button"
-              className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-500"
+              className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400"
               onClick={() => setShowPassword(!showPassword)}
             >
               {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
             </button>
           </div>
           {errors.password && (
-            <p className="mt-1 text-sm text-danger-600">{errors.password.message}</p>
+            <p className="mt-1 text-sm text-danger-600 dark:text-danger-400">{errors.password.message}</p>
           )}
         </div>
 
@@ -113,15 +113,15 @@ const Login = () => {
               id="remember-me"
               name="remember-me"
               type="checkbox"
-              className="h-4 w-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500"
+              className="h-4 w-4 rounded border-gray-300 dark:border-dark-border text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-400"
             />
-            <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-700">
+            <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-700 dark:text-dark-text-primary">
               Remember me
             </label>
           </div>
 
           <div className="text-sm">
-            <Link to="/forgot-password" className="font-medium text-primary-600 hover:text-primary-500">
+            <Link to="/forgot-password" className="font-medium text-primary-600 hover:text-primary-500 dark:text-primary-400 dark:hover:text-primary-300">
               Forgot your password?
             </Link>
           </div>
@@ -137,9 +137,9 @@ const Login = () => {
           </button>
         </div>
 
-        <div className="text-center text-sm text-gray-600">
+        <div className="text-center text-sm text-gray-600 dark:text-dark-text-secondary">
           Don't have an account?{' '}
-          <Link to="/register" className="font-medium text-primary-600 hover:text-primary-500">
+          <Link to="/register" className="font-medium text-primary-600 hover:text-primary-500 dark:text-primary-400 dark:hover:text-primary-300">
             Sign up
           </Link>
         </div>

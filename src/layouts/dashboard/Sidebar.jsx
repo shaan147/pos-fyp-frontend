@@ -77,7 +77,7 @@ const Sidebar = ({ open, setOpen, user }) => {
       {/* Mobile backdrop */}
       {open && (
         <div 
-          className="fixed inset-0 z-20 bg-black bg-opacity-50 transition-opacity lg:hidden"
+          className="fixed inset-0 z-20 bg-black bg-opacity-50 dark:bg-opacity-75 transition-opacity lg:hidden"
           onClick={() => setOpen(false)}
         ></div>
       )}
@@ -85,7 +85,7 @@ const Sidebar = ({ open, setOpen, user }) => {
       {/* Sidebar container */}
       <div
         className={classNames(
-          'fixed inset-y-0 left-0 z-30 w-64 transform overflow-y-auto bg-white p-4 transition duration-300 ease-in-out lg:static lg:inset-0 lg:translate-x-0',
+          'fixed inset-y-0 left-0 z-30 w-64 transform overflow-y-auto bg-white dark:bg-dark-card p-4 transition duration-300 ease-in-out lg:static lg:inset-0 lg:translate-x-0',
           {
             'translate-x-0': open,
             '-translate-x-full': !open,
@@ -94,11 +94,11 @@ const Sidebar = ({ open, setOpen, user }) => {
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <ShoppingCart className="h-8 w-8 text-primary-600" />
-            <span className="text-xl font-semibold text-gray-900">POS System</span>
+            <ShoppingCart className="h-8 w-8 text-primary-600 dark:text-primary-400" />
+            <span className="text-xl font-semibold text-gray-900 dark:text-dark-text-primary">POS System</span>
           </div>
           <button
-            className="lg:hidden text-gray-500 hover:text-gray-600"
+            className="lg:hidden text-gray-500 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300"
             onClick={() => setOpen(false)}
           >
             <X size={24} />
@@ -108,12 +108,12 @@ const Sidebar = ({ open, setOpen, user }) => {
         {/* User info */}
         <div className="mt-6 mb-6">
           <div className="flex items-center space-x-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-100 text-primary-600">
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400">
               {user?.name ? user.name.charAt(0).toUpperCase() : 'U'}
             </div>
             <div>
-              <p className="text-sm font-medium text-gray-700">{user?.name || 'User'}</p>
-              <p className="text-xs text-gray-500 capitalize">{user?.role || 'Guest'}</p>
+              <p className="text-sm font-medium text-gray-700 dark:text-dark-text-primary">{user?.name || 'User'}</p>
+              <p className="text-xs text-gray-500 dark:text-dark-text-secondary capitalize">{user?.role || 'Guest'}</p>
             </div>
           </div>
         </div>
@@ -128,8 +128,8 @@ const Sidebar = ({ open, setOpen, user }) => {
                 classNames(
                   'flex items-center rounded-md px-4 py-3 text-sm font-medium transition-colors',
                   {
-                    'bg-primary-50 text-primary-700': isActive || location.pathname.startsWith(item.path),
-                    'text-gray-700 hover:bg-gray-100': !(isActive || location.pathname.startsWith(item.path)),
+                    'bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300': isActive || location.pathname.startsWith(item.path),
+                    'text-gray-700 dark:text-dark-text-primary hover:bg-gray-100 dark:hover:bg-dark-bg': !(isActive || location.pathname.startsWith(item.path)),
                   }
                 )
               }
@@ -142,7 +142,7 @@ const Sidebar = ({ open, setOpen, user }) => {
 
         {/* App version */}
         <div className="absolute bottom-4 left-4 right-4">
-          <div className="text-xs text-gray-500">Version 1.0.0</div>
+          <div className="text-xs text-gray-500 dark:text-dark-text-muted">Version 1.0.0</div>
         </div>
       </div>
     </>

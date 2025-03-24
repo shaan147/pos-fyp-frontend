@@ -75,12 +75,12 @@ const Register = () => {
   return (
     <div>
       <div className="mb-8 text-center">
-        <h1 className="text-2xl font-bold text-gray-900">Create your account</h1>
-        <p className="mt-2 text-sm text-gray-600">Sign up to get started with our POS system</p>
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-dark-text-primary">Create your account</h1>
+        <p className="mt-2 text-sm text-gray-600 dark:text-dark-text-secondary">Sign up to get started with our POS system</p>
       </div>
 
       {registerError && (
-        <div className="mb-4 p-3 bg-danger-50 border border-danger-200 text-danger-700 rounded-md flex items-center">
+        <div className="mb-4 p-3 bg-danger-50 dark:bg-danger-900/30 border border-danger-200 dark:border-danger-800 text-danger-700 dark:text-danger-300 rounded-md flex items-center">
           <AlertCircle size={16} className="mr-2 flex-shrink-0" />
           <span className="text-sm">{registerError}</span>
         </div>
@@ -88,100 +88,100 @@ const Register = () => {
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-dark-text-primary mb-1">
             Name
           </label>
           <input
             id="name"
             type="text"
-            className={`input w-full ${errors.name ? 'border-danger-500 focus-visible:ring-danger-500' : ''}`}
+            className={`input w-full ${errors.name ? 'border-danger-500 focus-visible:ring-danger-500 dark:border-danger-500 dark:focus-visible:ring-danger-500' : ''}`}
             placeholder="Enter your full name"
             {...register('name')}
           />
           {errors.name && (
-            <p className="mt-1 text-sm text-danger-600">{errors.name.message}</p>
+            <p className="mt-1 text-sm text-danger-600 dark:text-danger-400">{errors.name.message}</p>
           )}
         </div>
 
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-dark-text-primary mb-1">
             Email
           </label>
           <input
             id="email"
             type="email"
-            className={`input w-full ${errors.email ? 'border-danger-500 focus-visible:ring-danger-500' : ''}`}
+            className={`input w-full ${errors.email ? 'border-danger-500 focus-visible:ring-danger-500 dark:border-danger-500 dark:focus-visible:ring-danger-500' : ''}`}
             placeholder="Enter your email"
             {...register('email')}
           />
           {errors.email && (
-            <p className="mt-1 text-sm text-danger-600">{errors.email.message}</p>
+            <p className="mt-1 text-sm text-danger-600 dark:text-danger-400">{errors.email.message}</p>
           )}
         </div>
 
         <div>
-          <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="phone" className="block text-sm font-medium text-gray-700 dark:text-dark-text-primary mb-1">
             Phone
           </label>
           <input
             id="phone"
             type="text"
-            className={`input w-full ${errors.phone ? 'border-danger-500 focus-visible:ring-danger-500' : ''}`}
+            className={`input w-full ${errors.phone ? 'border-danger-500 focus-visible:ring-danger-500 dark:border-danger-500 dark:focus-visible:ring-danger-500' : ''}`}
             placeholder="Enter your phone number"
             {...register('phone')}
           />
           {errors.phone && (
-            <p className="mt-1 text-sm text-danger-600">{errors.phone.message}</p>
+            <p className="mt-1 text-sm text-danger-600 dark:text-danger-400">{errors.phone.message}</p>
           )}
         </div>
 
         <div>
-          <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-dark-text-primary mb-1">
             Password
           </label>
           <div className="relative">
             <input
               id="password"
               type={showPassword ? 'text' : 'password'}
-              className={`input w-full pr-10 ${errors.password ? 'border-danger-500 focus-visible:ring-danger-500' : ''}`}
+              className={`input w-full pr-10 ${errors.password ? 'border-danger-500 focus-visible:ring-danger-500 dark:border-danger-500 dark:focus-visible:ring-danger-500' : ''}`}
               placeholder="Create a password"
               {...register('password')}
             />
             <button
               type="button"
-              className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-500"
+              className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400"
               onClick={() => setShowPassword(!showPassword)}
             >
               {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
             </button>
           </div>
           {errors.password && (
-            <p className="mt-1 text-sm text-danger-600">{errors.password.message}</p>
+            <p className="mt-1 text-sm text-danger-600 dark:text-danger-400">{errors.password.message}</p>
           )}
         </div>
 
         <div>
-          <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 dark:text-dark-text-primary mb-1">
             Confirm Password
           </label>
           <div className="relative">
             <input
               id="confirmPassword"
               type={showConfirmPassword ? 'text' : 'password'}
-              className={`input w-full pr-10 ${errors.confirmPassword ? 'border-danger-500 focus-visible:ring-danger-500' : ''}`}
+              className={`input w-full pr-10 ${errors.confirmPassword ? 'border-danger-500 focus-visible:ring-danger-500 dark:border-danger-500 dark:focus-visible:ring-danger-500' : ''}`}
               placeholder="Confirm your password"
               {...register('confirmPassword')}
             />
             <button
               type="button"
-              className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-500"
+              className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400"
               onClick={() => setShowConfirmPassword(!showConfirmPassword)}
             >
               {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
             </button>
           </div>
           {errors.confirmPassword && (
-            <p className="mt-1 text-sm text-danger-600">{errors.confirmPassword.message}</p>
+            <p className="mt-1 text-sm text-danger-600 dark:text-danger-400">{errors.confirmPassword.message}</p>
           )}
         </div>
 
@@ -195,9 +195,9 @@ const Register = () => {
           </button>
         </div>
 
-        <div className="text-center text-sm text-gray-600">
+        <div className="text-center text-sm text-gray-600 dark:text-dark-text-secondary">
           Already have an account?{' '}
-          <Link to="/login" className="font-medium text-primary-600 hover:text-primary-500">
+          <Link to="/login" className="font-medium text-primary-600 hover:text-primary-500 dark:text-primary-400 dark:hover:text-primary-300">
             Sign in
           </Link>
         </div>

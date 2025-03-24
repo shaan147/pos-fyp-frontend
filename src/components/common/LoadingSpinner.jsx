@@ -9,7 +9,7 @@ const LoadingSpinner = ({ size = 'medium', className }) => {
       'h-8 w-8 border-2': size === 'medium',
       'h-12 w-12 border-4': size === 'large',
     },
-    'border-primary-600',
+    'border-primary-600 dark:border-primary-400',
     className
   );
 

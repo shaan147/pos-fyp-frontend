@@ -2,6 +2,7 @@ import { Suspense, lazy } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useAuth } from '@hooks/useAuth';
 import LoadingSpinner from '@components/common/LoadingSpinner';
+import { ThemeProvider } from '@context/ThemeContext';
 
 // Layouts
 import DashboardLayout from '@layouts/dashboard/DashboardLayout';
@@ -37,10 +38,11 @@ function App() {
   }
 
   return (
-    <Suspense
-      fallback={
-        <div className="flex h-screen items-center justify-center">
-          <LoadingSpinner size="large" />
+    <ThemeProvider>
+      <Suspense
+        fallback={
+          <div className="flex h-screen items-center justify-center">
+            <LoadingSpinner size="large" />
         </div>
       }
     >
@@ -102,7 +104,8 @@ function App() {
         {/* 404 Route */}
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </Suspense>
+      </Suspense>
+    </ThemeProvider>
   );
 }
 
