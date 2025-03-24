@@ -221,7 +221,7 @@ const ProductDetail = () => {
   // Error state
   if (productError) {
     return (
-      <div className="bg-danger-50 border border-danger-200 rounded-lg p-4">
+      <div className="bg-danger-50 dark:bg-danger-900/30 border border-danger-200 dark:border-danger-800 rounded-lg p-4">
         <div className="flex">
           <div className="flex-shrink-0">
             <AlertCircle className="h-5 w-5 text-danger-400" />
@@ -271,7 +271,7 @@ const ProductDetail = () => {
           >
             <ArrowLeft className="h-5 w-5 text-gray-500" />
           </button>
-          <h1 className="text-2xl font-bold text-gray-900">{productData.name}</h1>
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-dark-text-primary">{productData.name}</h1>
         </div>
         <div className="flex items-center space-x-2">
           {!isEditing ? (
@@ -331,7 +331,7 @@ const ProductDetail = () => {
 
       {/* Success message */}
       {successMessage && (
-        <div className="bg-success-50 border border-success-200 rounded-lg p-4">
+        <div className="bg-success-50 dark:bg-success-900/30 border border-success-200 dark:border-success-800 rounded-lg p-4">
           <div className="flex">
             <div className="flex-shrink-0">
               <Check className="h-5 w-5 text-success-400" />
@@ -345,7 +345,7 @@ const ProductDetail = () => {
 
       {/* Error message */}
       {(updateProductMutation.isError || updateStockMutation.isError) && (
-        <div className="bg-danger-50 border border-danger-200 rounded-lg p-4">
+        <div className="bg-danger-50 dark:bg-danger-900/30 border border-danger-200 dark:border-danger-800 rounded-lg p-4">
           <div className="flex">
             <div className="flex-shrink-0">
               <AlertCircle className="h-5 w-5 text-danger-400" />
@@ -366,16 +366,16 @@ const ProductDetail = () => {
 
       {/* Product Status Badges */}
       <div className="flex flex-wrap gap-2">
-        <span className={`badge ${productData.isActive ? 'badge-success' : 'badge-danger'}`}>
+        <span className={`badge ${productData.isActive ? 'badge-success dark:bg-success-900/30 dark:text-success-300' : 'badge-danger dark:bg-danger-900/30 dark:text-danger-300'}`}>
           {productData.isActive ? 'Active' : 'Inactive'}
         </span>
         <span
           className={`badge ${
             productData.stockQuantity <= 0
-              ? 'badge-danger'
+              ? 'badge-danger dark:bg-danger-900/30 dark:text-danger-300'
               : productData.stockQuantity <= productData.minStockLevel
-                ? 'badge-warning'
-                : 'badge-success'
+                ? 'badge-warning dark:bg-warning-900/30 dark:text-warning-300'
+                : 'badge-success dark:bg-success-900/30 dark:text-success-300'
           }`}
         >
           {productData.stockQuantity <= 0
@@ -390,22 +390,22 @@ const ProductDetail = () => {
         {/* Product Details Section */}
         {isEditing ? (
           <div className="lg:col-span-2 space-y-6">
-            <form className="bg-white rounded-lg border shadow-sm p-6">
+            <form className="bg-white dark:bg-dark-card rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm p-6">
               <div className="space-y-6">
-                <h2 className="text-lg font-medium text-gray-900 border-b pb-2">
+                <h2 className="text-lg font-medium text-gray-900 dark:text-dark-text-primary border-b pb-2">
                   Product Information
                 </h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {/* Product Name */}
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-dark-text-primary mb-1">
                       Product Name <span className="text-danger-500">*</span>
                     </label>
                     <input
                       id="name"
                       type="text"
-                      className={`input w-full ${errors.name ? 'border-danger-500 focus-visible:ring-danger-500' : ''}`}
+                      className={`input w-full dark:bg-dark-card dark:border-gray-700 dark:text-dark-text-primary dark:placeholder-gray-500 ${errors.name ? 'border-danger-500 focus-visible:ring-danger-500' : ''}`}
                       placeholder="Enter product name"
                       {...register('name')}
                     />
@@ -418,14 +418,14 @@ const ProductDetail = () => {
                   <div>
                     <label
                       htmlFor="barcode"
-                      className="block text-sm font-medium text-gray-700 mb-1"
+                      className="block text-sm font-medium text-gray-700 dark:text-dark-text-primary mb-1"
                     >
                       Barcode
                     </label>
                     <input
                       id="barcode"
                       type="text"
-                      className={`input w-full ${errors.barcode ? 'border-danger-500 focus-visible:ring-danger-500' : ''}`}
+                      className={`input w-full dark:bg-dark-card dark:border-gray-700 dark:text-dark-text-primary dark:placeholder-gray-500 ${errors.barcode ? 'border-danger-500 focus-visible:ring-danger-500' : ''}`}
                       placeholder="Enter barcode (optional)"
                       {...register('barcode')}
                     />
@@ -438,13 +438,13 @@ const ProductDetail = () => {
                   <div>
                     <label
                       htmlFor="category"
-                      className="block text-sm font-medium text-gray-700 mb-1"
+                      className="block text-sm font-medium text-gray-700 dark:text-dark-text-primary mb-1"
                     >
                       Category <span className="text-danger-500">*</span>
                     </label>
                     <select
                       id="category"
-                      className={`input w-full ${errors.category ? 'border-danger-500 focus-visible:ring-danger-500' : ''}`}
+                      className={`input w-full dark:bg-dark-card dark:border-gray-700 dark:text-dark-text-primary ${errors.category ? 'border-danger-500 focus-visible:ring-danger-500' : ''}`}
                       {...register('category')}
                     >
                       <option value="">Select category</option>
@@ -461,12 +461,12 @@ const ProductDetail = () => {
 
                   {/* Unit */}
                   <div>
-                    <label htmlFor="unit" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="unit" className="block text-sm font-medium text-gray-700 dark:text-dark-text-primary mb-1">
                       Unit <span className="text-danger-500">*</span>
                     </label>
                     <select
                       id="unit"
-                      className={`input w-full ${errors.unit ? 'border-danger-500 focus-visible:ring-danger-500' : ''}`}
+                      className={`input w-full dark:bg-dark-card dark:border-gray-700 dark:text-dark-text-primary ${errors.unit ? 'border-danger-500 focus-visible:ring-danger-500' : ''}`}
                       {...register('unit')}
                     >
                       {units.map((unit) => (
@@ -482,7 +482,7 @@ const ProductDetail = () => {
 
                   {/* Selling Price */}
                   <div>
-                    <label htmlFor="price" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="price" className="block text-sm font-medium text-gray-700 dark:text-dark-text-primary mb-1">
                       Selling Price <span className="text-danger-500">*</span>
                     </label>
                     <div className="relative">
@@ -493,7 +493,7 @@ const ProductDetail = () => {
                         id="price"
                         type="number"
                         step="0.01"
-                        className={`input pl-8 w-full ${errors.price ? 'border-danger-500 focus-visible:ring-danger-500' : ''}`}
+                        className={`input pl-8 w-full dark:bg-dark-card dark:border-gray-700 dark:text-dark-text-primary dark:placeholder-gray-500 ${errors.price ? 'border-danger-500 focus-visible:ring-danger-500' : ''}`}
                         placeholder="0.00"
                         {...register('price')}
                       />
@@ -507,7 +507,7 @@ const ProductDetail = () => {
                   <div>
                     <label
                       htmlFor="costPrice"
-                      className="block text-sm font-medium text-gray-700 mb-1"
+                      className="block text-sm font-medium text-gray-700 dark:text-dark-text-primary mb-1"
                     >
                       Cost Price <span className="text-danger-500">*</span>
                     </label>
@@ -519,7 +519,7 @@ const ProductDetail = () => {
                         id="costPrice"
                         type="number"
                         step="0.01"
-                        className={`input pl-8 w-full ${errors.costPrice ? 'border-danger-500 focus-visible:ring-danger-500' : ''}`}
+                        className={`input pl-8 w-full dark:bg-dark-card dark:border-gray-700 dark:text-dark-text-primary dark:placeholder-gray-500 ${errors.costPrice ? 'border-danger-500 focus-visible:ring-danger-500' : ''}`}
                         placeholder="0.00"
                         {...register('costPrice')}
                       />
@@ -533,7 +533,7 @@ const ProductDetail = () => {
                   <div>
                     <label
                       htmlFor="minStockLevel"
-                      className="block text-sm font-medium text-gray-700 mb-1"
+                      className="block text-sm font-medium text-gray-700 dark:text-dark-text-primary mb-1"
                     >
                       Minimum Stock Level <span className="text-danger-500">*</span>
                     </label>
@@ -541,12 +541,12 @@ const ProductDetail = () => {
                       <input
                         id="minStockLevel"
                         type="number"
-                        className={`input w-full ${errors.minStockLevel ? 'border-danger-500 focus-visible:ring-danger-500' : ''}`}
+                        className={`input w-full dark:bg-dark-card dark:border-gray-700 dark:text-dark-text-primary dark:placeholder-gray-500 ${errors.minStockLevel ? 'border-danger-500 focus-visible:ring-danger-500' : ''}`}
                         placeholder="0"
                         {...register('minStockLevel')}
                       />
                     </div>
-                    <p className="mt-1 text-xs text-gray-500">
+                    <p className="mt-1 text-xs text-gray-500 dark:text-dark-text-secondary">
                       System will alert you when stock falls below this level
                     </p>
                     {errors.minStockLevel && (
@@ -558,7 +558,7 @@ const ProductDetail = () => {
                   <div>
                     <label
                       htmlFor="supplier"
-                      className="block text-sm font-medium text-gray-700 mb-1"
+                      className="block text-sm font-medium text-gray-700 dark:text-dark-text-primary mb-1"
                     >
                       Supplier <span className="text-danger-500">*</span>
                     </label>
@@ -566,16 +566,16 @@ const ProductDetail = () => {
                       {isLoadingSuppliers ? (
                         <div className="input w-full flex items-center">
                           <LoadingSpinner size="small" />
-                          <span className="ml-2 text-gray-500">Loading suppliers...</span>
+                          <span className="ml-2 text-gray-500 dark:text-dark-text-secondary">Loading suppliers...</span>
                         </div>
                       ) : (
                         <div className="relative">
                           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <Truck className="h-5 w-5 text-gray-400" />
+                            <Truck className="h-5 w-5 text-gray-500 dark:text-gray-400" />
                           </div>
                           <select
                             id="supplier"
-                            className={`input pl-10 w-full ${errors.supplier ? 'border-danger-500 focus-visible:ring-danger-500' : ''}`}
+                            className={`input pl-10 w-full dark:bg-dark-card dark:border-gray-700 dark:text-dark-text-primary ${errors.supplier ? 'border-danger-500 focus-visible:ring-danger-500' : ''}`}
                             {...register('supplier')}
                           >
                             <option value="">Select supplier</option>
@@ -598,14 +598,14 @@ const ProductDetail = () => {
                 <div>
                   <label
                     htmlFor="description"
-                    className="block text-sm font-medium text-gray-700 mb-1"
+                    className="block text-sm font-medium text-gray-700 dark:text-dark-text-primary mb-1"
                   >
                     Description
                   </label>
                   <textarea
                     id="description"
                     rows={3}
-                    className={`input w-full ${errors.description ? 'border-danger-500 focus-visible:ring-danger-500' : ''}`}
+                    className={`input w-full dark:bg-dark-card dark:border-gray-700 dark:text-dark-text-primary ${errors.description ? 'border-danger-500 focus-visible:ring-danger-500' : ''}`}
                     placeholder="Enter product description (optional)"
                     {...register('description')}
                   />
@@ -622,7 +622,7 @@ const ProductDetail = () => {
                     className="h-4 w-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500"
                     {...register('isActive')}
                   />
-                  <label htmlFor="isActive" className="ml-2 block text-sm text-gray-700">
+                  <label htmlFor="isActive" className="ml-2 block text-sm text-gray-700 dark:text-dark-text-primary">
                     Product is active and available for sale
                   </label>
                 </div>
@@ -631,47 +631,47 @@ const ProductDetail = () => {
           </div>
         ) : (
           <div className="lg:col-span-2 space-y-6">
-            <div className="bg-white rounded-lg border shadow-sm overflow-hidden">
+            <div className="bg-white dark:bg-dark-card rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm overflow-hidden">
               <div className="p-6">
-                <h2 className="text-lg font-medium text-gray-900 border-b pb-2 mb-4">
+                <h2 className="text-lg font-medium text-gray-900 dark:text-dark-text-primary border-b pb-2 mb-4">
                   Product Information
                 </h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
                   <div>
-                    <h3 className="text-sm font-medium text-gray-500">ID / SKU</h3>
+                    <h3 className="text-sm font-medium text-gray-500 dark:text-dark-text-secondary">ID / SKU</h3>
                     <p className="mt-1">{productData.productId}</p>
                   </div>
 
                   <div>
-                    <h3 className="text-sm font-medium text-gray-500">Barcode</h3>
+                    <h3 className="text-sm font-medium text-gray-500 dark:text-dark-text-secondary">Barcode</h3>
                     <p className="mt-1">{productData.barcode || 'N/A'}</p>
                   </div>
 
                   <div>
-                    <h3 className="text-sm font-medium text-gray-500">Category</h3>
+                    <h3 className="text-sm font-medium text-gray-500 dark:text-dark-text-secondary">Category</h3>
                     <p className="mt-1 capitalize">{getCategoryLabel(productData.category)}</p>
                   </div>
 
                   <div>
-                    <h3 className="text-sm font-medium text-gray-500">Unit</h3>
+                    <h3 className="text-sm font-medium text-gray-500 dark:text-dark-text-secondary">Unit</h3>
                     <p className="mt-1">{getUnitLabel(productData.unit)}</p>
                   </div>
 
                   <div>
-                    <h3 className="text-sm font-medium text-gray-500">Selling Price</h3>
+                    <h3 className="text-sm font-medium text-gray-500 dark:text-dark-text-secondary">Selling Price</h3>
                     <p className="mt-1 font-medium text-gray-900">
                       ₨{productData.price.toFixed(2)}
                     </p>
                   </div>
 
                   <div>
-                    <h3 className="text-sm font-medium text-gray-500">Cost Price</h3>
+                    <h3 className="text-sm font-medium text-gray-500 dark:text-dark-text-secondary">Cost Price</h3>
                     <p className="mt-1">₨{productData.costPrice.toFixed(2)}</p>
                   </div>
 
                   <div>
-                    <h3 className="text-sm font-medium text-gray-500">Profit Margin</h3>
+                    <h3 className="text-sm font-medium text-gray-500 dark:text-dark-text-secondary">Profit Margin</h3>
                     <p className="mt-1">
                       {(
                         ((productData.price - productData.costPrice) / productData.price) *
@@ -682,46 +682,46 @@ const ProductDetail = () => {
                   </div>
 
                   <div>
-                    <h3 className="text-sm font-medium text-gray-500">Supplier</h3>
+                    <h3 className="text-sm font-medium text-gray-500 dark:text-dark-text-secondary">Supplier</h3>
                     <p className="mt-1">{getSupplierName(productData.supplier)}</p>
                   </div>
 
                   <div className="md:col-span-2">
-                    <h3 className="text-sm font-medium text-gray-500">Description</h3>
+                    <h3 className="text-sm font-medium text-gray-500 dark:text-dark-text-secondary">Description</h3>
                     <p className="mt-1">{productData.description || 'No description available'}</p>
                   </div>
                 </div>
               </div>
 
               <div className="border-t p-6">
-                <h2 className="text-lg font-medium text-gray-900 border-b pb-2 mb-4">
+                <h2 className="text-lg font-medium text-gray-900 dark:text-dark-text-primary border-b pb-2 mb-4">
                   Inventory Status
                 </h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
                   <div>
-                    <h3 className="text-sm font-medium text-gray-500">Current Stock</h3>
+                    <h3 className="text-sm font-medium text-gray-500 dark:text-dark-text-secondary">Current Stock</h3>
                     <p className="mt-1 font-medium text-gray-900">
                       {productData.stockQuantity} {productData.unit}
                     </p>
                   </div>
 
                   <div>
-                    <h3 className="text-sm font-medium text-gray-500">Minimum Stock Level</h3>
+                    <h3 className="text-sm font-medium text-gray-500 dark:text-dark-text-secondary">Minimum Stock Level</h3>
                     <p className="mt-1">
                       {productData.minStockLevel} {productData.unit}
                     </p>
                   </div>
 
                   <div>
-                    <h3 className="text-sm font-medium text-gray-500">Stock Value</h3>
+                    <h3 className="text-sm font-medium text-gray-500 dark:text-dark-text-secondary">Stock Value</h3>
                     <p className="mt-1">
                       ₨{(productData.stockQuantity * productData.costPrice).toFixed(2)}
                     </p>
                   </div>
 
                   <div>
-                    <h3 className="text-sm font-medium text-gray-500">Created At</h3>
+                    <h3 className="text-sm font-medium text-gray-500 dark:text-dark-text-secondary">Created At</h3>
                     <p className="mt-1">{dayjs(productData.createdAt).format('MMM D, YYYY')}</p>
                   </div>
                 </div>
@@ -733,14 +733,14 @@ const ProductDetail = () => {
         {/* Stock Management & Stats Section */}
         <div className="space-y-6">
           {/* Stock Management Card */}
-          <div className="bg-white rounded-lg border shadow-sm p-6">
-            <h2 className="text-lg font-medium text-gray-900 border-b pb-2 mb-4">
+          <div className="bg-white dark:bg-dark-card rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm p-6">
+            <h2 className="text-lg font-medium text-gray-900 dark:text-dark-text-primary border-b pb-2 mb-4">
               Stock Management
             </h2>
 
             <div className="space-y-4">
               <div>
-                <p className="text-sm font-medium text-gray-700 mb-2">
+                <p className="text-sm font-medium text-gray-700 dark:text-dark-text-primary mb-2">
                   Current Stock:{' '}
                   <span className="font-semibold">
                     {productData.stockQuantity} {productData.unit}
@@ -810,16 +810,16 @@ const ProductDetail = () => {
             </div>
 
             {/* Product Stats Card */}
-            <div className="bg-white rounded-lg border shadow-sm p-6">
-              <h2 className="text-lg font-medium text-gray-900 border-b pb-2 mb-4">Statistics</h2>
+            <div className="bg-white dark:bg-dark-card rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm p-6">
+              <h2 className="text-lg font-medium text-gray-900 dark:text-dark-text-primary border-b pb-2 mb-4">Statistics</h2>
 
               <div className="space-y-4">
                 <div className="flex items-center">
-                  <div className="p-2 rounded-full bg-primary-100 text-primary-600 mr-3">
+                  <div className="p-2 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-300 mr-3">
                     <CircleDollarSign size={20} />
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-gray-500">Profit per unit</p>
+                    <p className="text-sm font-medium text-gray-500 dark:text-dark-text-secondary">Profit per unit</p>
                     <p className="font-medium">
                       ₨{(productData.price - productData.costPrice).toFixed(2)}
                     </p>
@@ -827,11 +827,11 @@ const ProductDetail = () => {
                 </div>
 
                 <div className="flex items-center">
-                  <div className="p-2 rounded-full bg-success-100 text-success-600 mr-3">
+                  <div className="p-2 rounded-full bg-success-100 dark:bg-success-900/30 text-success-600 dark:text-success-300 mr-3">
                     <Tag size={20} />
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-gray-500">Total stock value</p>
+                    <p className="text-sm font-medium text-gray-500 dark:text-dark-text-secondary">Total stock value</p>
                     <p className="font-medium">
                       ₨{(productData.stockQuantity * productData.costPrice).toFixed(2)}
                     </p>
@@ -839,11 +839,11 @@ const ProductDetail = () => {
                 </div>
 
                 <div className="flex items-center">
-                  <div className="p-2 rounded-full bg-warning-100 text-warning-600 mr-3">
+                  <div className="p-2 rounded-full bg-warning-100 dark:bg-warning-900/30 text-warning-600 dark:text-warning-300 mr-3">
                     <Calendar size={20} />
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-gray-500">Last updated</p>
+                    <p className="text-sm font-medium text-gray-500 dark:text-dark-text-secondary">Last updated</p>
                     <p className="font-medium">
                       {dayjs(productData.updatedAt).format('MMM D, YYYY')}
                     </p>
@@ -853,12 +853,12 @@ const ProductDetail = () => {
             </div>
 
             {/* Supplier Information Card */}
-            <div className="bg-white rounded-lg border shadow-sm p-6">
+            <div className="bg-white dark:bg-dark-card rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm p-6">
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-lg font-medium text-gray-900">Supplier</h2>
+                <h2 className="text-lg font-medium text-gray-900 dark:text-dark-text-primary">Supplier</h2>
                 <Link
                   to={`/suppliers/${productData.supplier}`}
-                  className="text-primary-600 hover:text-primary-700 text-sm font-medium"
+                  className="text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 text-sm font-medium"
                 >
                   View Supplier
                 </Link>
@@ -867,23 +867,23 @@ const ProductDetail = () => {
               {isLoadingSuppliers ? (
                 <div className="flex items-center justify-center py-4">
                   <LoadingSpinner size="small" />
-                  <span className="ml-2 text-gray-500">Loading supplier...</span>
+                  <span className="ml-2 text-gray-500 dark:text-dark-text-secondary">Loading supplier...</span>
                 </div>
               ) : (
                 <div className="space-y-2">
                   <p className="font-medium">{getSupplierName(productData.supplier)}</p>
                   {suppliersData?.data.find((s) => s._id === productData.supplier) && (
                     <>
-                      <p className="text-sm text-gray-500">
+                      <p className="text-sm text-gray-500 dark:text-dark-text-secondary">
                         {
                           suppliersData.data.find((s) => s._id === productData.supplier)
                             .contactPerson
                         }
                       </p>
-                      <p className="text-sm text-gray-500">
+                      <p className="text-sm text-gray-500 dark:text-dark-text-secondary">
                         {suppliersData.data.find((s) => s._id === productData.supplier).email}
                       </p>
-                      <p className="text-sm text-gray-500">
+                      <p className="text-sm text-gray-500 dark:text-dark-text-secondary">
                         {suppliersData.data.find((s) => s._id === productData.supplier).phone}
                       </p>
                     </>
