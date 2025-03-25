@@ -95,7 +95,7 @@ const Sidebar = ({ open, setOpen, user }) => {
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <ShoppingCart className="h-8 w-8 text-primary-600 dark:text-primary-400" />
-            <span className="text-xl font-semibold text-gray-900 dark:text-dark-text-primary">POS System</span>
+            <span className="text-xl font-semibold text-gray-900 dark:text-dark-text-primary">SuperSync</span>
           </div>
           <button
             className="lg:hidden text-gray-500 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300"

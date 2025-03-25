@@ -27,8 +27,8 @@ const CategoryFilter = ({ selectedCategory, onSelectCategory }) => {
             key={category.value}
             className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap ${
               selectedCategory === category.value
-                ? 'bg-primary-100 text-primary-800 border border-primary-200'
-                : 'bg-white text-gray-700 border border-gray-200 hover:bg-gray-50'
+                ? 'bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-200 border border-primary-200 dark:border-primary-800'
+                : 'bg-white dark:bg-dark-card text-gray-700 dark:text-dark-text-primary border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800'
             }`}
             onClick={() => onSelectCategory(category.value)}
           >

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { supplierService } from '@services/supplierService';
-import { productService } from '@services/productService';
 import {
   ArrowLeft,
   Edit,
@@ -105,7 +104,7 @@ const SupplierDetail = () => {
   // Loading state
   if (isLoadingSupplier) {
     return (
-      <div className="flex justify-center items-center h-60">
+      <div className="flex justify-center items-center h-60 dark:bg-dark-card">
         <LoadingSpinner size="large" />
       </div>
     );
@@ -114,21 +113,18 @@ const SupplierDetail = () => {
   // Error state
   if (supplierError) {
     return (
-      <div className="bg-danger-50 border border-danger-200 rounded-lg p-4">
+      <div className="bg-danger-50 dark:bg-danger-900/30 border border-danger-200 dark:border-danger-800 rounded-lg p-4">
         <div className="flex">
           <div className="flex-shrink-0">
             <AlertCircle className="h-5 w-5 text-danger-400" />
           </div>
           <div className="ml-3">
-            <h3 className="text-sm font-medium text-danger-800">Error loading supplier</h3>
-            <div className="mt-2 text-sm text-danger-700">
-              <p>
-                {supplierError.message ||
-                  'There was an error loading the supplier. Please try again.'}
-              </p>
+            <h3 className="text-sm font-medium text-danger-800 dark:text-danger-200">Error loading supplier</h3>
+            <div className="mt-2 text-sm text-danger-700 dark:text-danger-300">
+              <p>{supplierError.message || 'There was an error loading the supplier. Please try again.'}</p>
               <button
                 onClick={() => navigate('/suppliers')}
-                className="mt-2 text-danger-600 font-medium hover:text-danger-500"
+                className="mt-2 text-danger-600 dark:text-danger-400 font-medium hover:text-danger-500 dark:hover:text-danger-300"
               >
                 Back to suppliers
               </button>
@@ -168,11 +164,11 @@ const SupplierDetail = () => {
         <div className="flex items-center gap-2">
           <button
             onClick={() => navigate('/suppliers')}
-            className="p-2 rounded-full hover:bg-gray-100"
+            className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800"
           >
-            <ArrowLeft className="h-5 w-5 text-gray-500" />
+            <ArrowLeft className="h-5 w-5 text-gray-500 dark:text-gray-400" />
           </button>
-          <h1 className="text-2xl font-bold text-gray-900">{supplierData.name}</h1>
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-dark-text-primary">{supplierData.name}</h1>
         </div>
         <div className="flex items-center space-x-2">
           {!isEditing ? (
@@ -209,13 +205,13 @@ const SupplierDetail = () => {
 
       {/* Success message */}
       {successMessage && (
-        <div className="bg-success-50 border border-success-200 rounded-lg p-4">
+        <div className="bg-success-50 dark:bg-success-900/30 border border-success-200 dark:border-success-800 rounded-lg p-4">
           <div className="flex">
             <div className="flex-shrink-0">
               <Check className="h-5 w-5 text-success-400" />
             </div>
             <div className="ml-3">
-              <p className="text-sm font-medium text-success-800">{successMessage}</p>
+              <p className="text-sm font-medium text-success-800 dark:text-success-200">{successMessage}</p>
             </div>
           </div>
         </div>
@@ -223,19 +219,15 @@ const SupplierDetail = () => {
 
       {/* Error messages */}
       {(updateSupplierMutation.isError || notifySupplierMutation.isError) && (
-        <div className="bg-danger-50 border border-danger-200 rounded-lg p-4">
+        <div className="bg-danger-50 dark:bg-danger-900/30 border border-danger-200 dark:border-danger-800 rounded-lg p-4">
           <div className="flex">
             <div className="flex-shrink-0">
               <AlertCircle className="h-5 w-5 text-danger-400" />
             </div>
             <div className="ml-3">
-              <h3 className="text-sm font-medium text-danger-800">An error occurred</h3>
-              <div className="mt-2 text-sm text-danger-700">
-                <p>
-                  {updateSupplierMutation.error?.message ||
-                    notifySupplierMutation.error?.message ||
-                    'An unexpected error occurred'}
-                </p>
+              <h3 className="text-sm font-medium text-danger-800 dark:text-danger-200">An error occurred</h3>
+              <div className="mt-2 text-sm text-danger-700 dark:text-danger-300">
+                <p>{updateSupplierMutation.error?.message || notifySupplierMutation.error?.message || 'An unexpected error occurred'}</p>
               </div>
             </div>
           </div>
@@ -260,26 +252,26 @@ const SupplierDetail = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Supplier Details */}
           <div className="lg:col-span-2 space-y-6">
-            <div className="bg-white rounded-lg border shadow-sm overflow-hidden">
+            <div className="bg-white dark:bg-dark-card rounded-lg border dark:border-gray-700 shadow-sm overflow-hidden">
               {/* Contact Information */}
               <div className="p-6">
-                <h2 className="text-lg font-medium text-gray-900 border-b pb-2 mb-4">
+                <h2 className="text-lg font-medium text-gray-900 dark:text-dark-text-primary border-b dark:border-gray-700 pb-2 mb-4">
                   Contact Information
                 </h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4">
                   <div>
-                    <h3 className="text-sm font-medium text-gray-500">Contact Person</h3>
-                    <p className="mt-1 font-medium">{supplierData.contactPerson}</p>
+                    <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">Contact Person</h3>
+                    <p className="mt-1 font-medium dark:text-dark-text-primary">{supplierData.contactPerson}</p>
                   </div>
 
                   <div>
-                    <h3 className="text-sm font-medium text-gray-500">Email</h3>
+                    <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">Email</h3>
                     <div className="mt-1 flex items-center">
-                      <Mail className="h-4 w-4 text-gray-400 mr-1" />
+                      <Mail className="h-4 w-4 text-gray-400 dark:text-gray-500 mr-1" />
                       <a
                         href={`mailto:${supplierData.email}`}
-                        className="text-primary-600 hover:underline"
+                        className="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300"
                       >
                         {supplierData.email}
                       </a>
@@ -287,12 +279,12 @@ const SupplierDetail = () => {
                   </div>
 
                   <div>
-                    <h3 className="text-sm font-medium text-gray-500">Phone</h3>
+                    <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">Phone</h3>
                     <div className="mt-1 flex items-center">
-                      <Phone className="h-4 w-4 text-gray-400 mr-1" />
+                      <Phone className="h-4 w-4 text-gray-400 dark:text-gray-500 mr-1" />
                       <a
                         href={`tel:${supplierData.phone}`}
-                        className="text-primary-600 hover:underline"
+                        className="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300"
                       >
                         {supplierData.phone}
                       </a>
@@ -300,8 +292,8 @@ const SupplierDetail = () => {
                   </div>
 
                   <div>
-                    <h3 className="text-sm font-medium text-gray-500">Tax ID / NTN</h3>
-                    <p className="mt-1">{supplierData.taxId || 'N/A'}</p>
+                    <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">Tax ID / NTN</h3>
+                    <p className="mt-1 dark:text-dark-text-primary">{supplierData.taxId || 'N/A'}</p>
                   </div>
                 </div>
               </div>
@@ -312,12 +304,12 @@ const SupplierDetail = () => {
                 supplierData.address?.state ||
                 supplierData.address?.postalCode ||
                 supplierData.address?.country) && (
-                <div className="border-t p-6">
-                  <h2 className="text-lg font-medium text-gray-900 border-b pb-2 mb-4">Address</h2>
+                <div className="border-t dark:border-gray-700 p-6">
+                  <h2 className="text-lg font-medium text-gray-900 dark:text-dark-text-primary border-b dark:border-gray-700 pb-2 mb-4">Address</h2>
 
                   <div className="flex items-start">
-                    <MapPin className="h-5 w-5 text-gray-400 mr-2 mt-0.5 flex-shrink-0" />
-                    <div>
+                    <MapPin className="h-5 w-5 text-gray-400 dark:text-gray-500 mr-2 mt-0.5 flex-shrink-0" />
+                    <div className="dark:text-dark-text-primary">
                       {supplierData.address?.street && <p>{supplierData.address?.street}</p>}
                       {(supplierData.address?.city || supplierData.address?.state) && (
                         <p>
@@ -335,34 +327,33 @@ const SupplierDetail = () => {
               )}
 
               {/* Business Information */}
-              <div className="border-t p-6">
-                <h2 className="text-lg font-medium text-gray-900 border-b pb-2 mb-4">
+              <div className="border-t dark:border-gray-700 p-6">
+                <h2 className="text-lg font-medium text-gray-900 dark:text-dark-text-primary border-b dark:border-gray-700 pb-2 mb-4">
                   Business Information
                 </h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4">
                   <div>
-                    <h3 className="text-sm font-medium text-gray-500">Categories</h3>
-                    <p className="mt-1">{formatCategories(supplierData.categories)}</p>
+                    <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">Categories</h3>
+                    <p className="mt-1 dark:text-dark-text-primary">{formatCategories(supplierData.categories)}</p>
                   </div>
 
                   <div>
-                    <h3 className="text-sm font-medium text-gray-500">Payment Terms</h3>
-                    <p className="mt-1">{formatPaymentTerms(supplierData.paymentTerms)}</p>
+                    <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">Payment Terms</h3>
+                    <p className="mt-1 dark:text-dark-text-primary">{formatPaymentTerms(supplierData.paymentTerms)}</p>
                   </div>
 
                   <div>
-                    <h3 className="text-sm font-medium text-gray-500">Lead Time</h3>
-                    <p className="mt-1">
+                    <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">Lead Time</h3>
+                    <p className="mt-1 dark:text-dark-text-primary">
                       {supplierData.leadTime} day{supplierData.leadTime !== 1 ? 's' : ''}
                     </p>
                   </div>
 
                   <div>
-                    <h3 className="text-sm font-medium text-gray-500">Minimum Order Quantity</h3>
-                    <p className="mt-1">
-                      {supplierData.minimumOrderQuantity} unit
-                      {supplierData.minimumOrderQuantity !== 1 ? 's' : ''}
+                    <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">Minimum Order Quantity</h3>
+                    <p className="mt-1 dark:text-dark-text-primary">
+                      {supplierData.minimumOrderQuantity} unit{supplierData.minimumOrderQuantity !== 1 ? 's' : ''}
                     </p>
                   </div>
                 </div>
@@ -370,9 +361,9 @@ const SupplierDetail = () => {
             </div>
 
             {/* Products Section */}
-            <div className="bg-white rounded-lg border shadow-sm p-6">
+            <div className="bg-white dark:bg-dark-card rounded-lg border dark:border-gray-700 shadow-sm p-6">
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-lg font-medium text-gray-900">Products</h2>
+                <h2 className="text-lg font-medium text-gray-900 dark:text-dark-text-primary">Products</h2>
               </div>
 
               <SupplierProducts products={products?.data || []} isLoading={isLoadingProducts} />
@@ -382,8 +373,8 @@ const SupplierDetail = () => {
           {/* Actions and Stats */}
           <div className="space-y-6">
             {/* Quick Actions */}
-            <div className="bg-white rounded-lg border shadow-sm p-6">
-              <h2 className="text-lg font-medium text-gray-900 border-b pb-2 mb-4">
+            <div className="bg-white dark:bg-dark-card rounded-lg border dark:border-gray-700 shadow-sm p-6">
+              <h2 className="text-lg font-medium text-gray-900 dark:text-dark-text-primary border-b dark:border-gray-700 pb-2 mb-4">
                 Quick Actions
               </h2>
 
@@ -412,37 +403,37 @@ const SupplierDetail = () => {
             </div>
 
             {/* Supplier Statistics */}
-            <div className="bg-white rounded-lg border shadow-sm p-6">
-              <h2 className="text-lg font-medium text-gray-900 border-b pb-2 mb-4">Statistics</h2>
+            <div className="bg-white dark:bg-dark-card rounded-lg border dark:border-gray-700 shadow-sm p-6">
+              <h2 className="text-lg font-medium text-gray-900 dark:text-dark-text-primary border-b dark:border-gray-700 pb-2 mb-4">Statistics</h2>
 
               <div className="space-y-4">
                 <div className="flex items-center">
-                  <div className="p-2 rounded-full bg-primary-100 text-primary-600 mr-3">
+                  <div className="p-2 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 mr-3">
                     <Package className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-gray-500">Products</p>
-                    <p className="font-medium">{products ? products.count : 'Loading...'}</p>
+                    <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Products</p>
+                    <p className="font-medium dark:text-dark-text-primary">{products ? products.count : 'Loading...'}</p>
                   </div>
                 </div>
 
                 <div className="flex items-center">
-                  <div className="p-2 rounded-full bg-success-100 text-success-600 mr-3">
+                  <div className="p-2 rounded-full bg-success-100 dark:bg-success-900/30 text-success-600 dark:text-success-400 mr-3">
                     <Clock className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-gray-500">Lead Time</p>
-                    <p className="font-medium">{supplierData.leadTime} days</p>
+                    <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Lead Time</p>
+                    <p className="font-medium dark:text-dark-text-primary">{supplierData.leadTime} days</p>
                   </div>
                 </div>
 
                 <div className="flex items-center">
-                  <div className="p-2 rounded-full bg-warning-100 text-warning-600 mr-3">
+                  <div className="p-2 rounded-full bg-warning-100 dark:bg-warning-900/30 text-warning-600 dark:text-warning-400 mr-3">
                     <FileText className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-gray-500">Last Updated</p>
-                    <p className="font-medium">
+                    <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Last Updated</p>
+                    <p className="font-medium dark:text-dark-text-primary">
                       {new Date(supplierData.updatedAt).toLocaleDateString()}
                     </p>
                   </div>
@@ -456,8 +447,8 @@ const SupplierDetail = () => {
       {/* Notification Form Modal */}
       {isNotifying && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-lg max-w-md w-full p-6">
-            <h2 className="text-xl font-bold mb-4">Send Notification</h2>
+          <div className="bg-white dark:bg-dark-card rounded-lg shadow-lg max-w-md w-full p-6">
+            <h2 className="text-xl font-bold text-gray-900 dark:text-dark-text-primary mb-4">Send Notification</h2>
 
             <NotifySupplierForm
               supplier={supplierData}

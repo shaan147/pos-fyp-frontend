@@ -150,7 +150,7 @@ const POS = () => {
   // Loading state
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center h-60">
+      <div className="flex justify-center items-center h-60 dark:bg-dark-card">
         <LoadingSpinner size="large" />
       </div>
     );
@@ -159,14 +159,14 @@ const POS = () => {
   // Error state
   if (error) {
     return (
-      <div className="bg-danger-50 border border-danger-200 rounded-lg p-4">
+      <div className="bg-danger-50 dark:bg-danger-900/30 border border-danger-200 dark:border-danger-800 rounded-lg p-4">
         <div className="flex">
           <div className="flex-shrink-0">
             <AlertCircle className="h-5 w-5 text-danger-400" />
           </div>
           <div className="ml-3">
-            <h3 className="text-sm font-medium text-danger-800">Error loading products</h3>
-            <div className="mt-2 text-sm text-danger-700">
+            <h3 className="text-sm font-medium text-danger-800 dark:text-danger-200">Error loading products</h3>
+            <div className="mt-2 text-sm text-danger-700 dark:text-danger-300">
               <p>{error.message || 'There was an error loading the products. Please try again.'}</p>
             </div>
           </div>
@@ -179,7 +179,7 @@ const POS = () => {
     <div className="h-[calc(100vh-64px)] overflow-hidden">
       <div className="flex h-full">
         {/* Products Section (Left) */}
-        <div className="w-2/3 h-full flex flex-col bg-gray-50 p-4">
+        <div className="w-2/3 h-full flex flex-col bg-gray-50 dark:bg-dark-bg p-4">
           <div className="mb-4 flex space-x-4">
             <div className="flex-1">
               <ProductSearch 
@@ -205,7 +205,7 @@ const POS = () => {
         </div>
         
         {/* Cart Section (Right) */}
-        <div className="w-1/3 h-full flex flex-col border-l">
+        <div className="w-1/3 h-full flex flex-col border-l dark:border-gray-700">
           <Cart 
             items={cart}
             totals={calculateTotals()}

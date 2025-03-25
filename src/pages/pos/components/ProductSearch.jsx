@@ -29,18 +29,18 @@ const ProductSearch = ({ onSearch, barcodeInput, setBarcodeInput, onBarcodeSubmi
       {!showBarcodeInput ? (
         <form onSubmit={handleSearchSubmit} className="relative">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <Search className="h-5 w-5 text-gray-400" />
+            <Search className="h-5 w-5 text-gray-400 dark:text-gray-500" />
           </div>
           <input
             type="text"
-            className="input pl-10 w-full"
+            className="input pl-10 w-full dark:bg-dark-card dark:border-gray-700 dark:text-dark-text-primary dark:placeholder-gray-500"
             placeholder="Search products by name..."
             value={searchInput}
             onChange={handleSearchChange}
           />
           <button
             type="button"
-            className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600"
+            className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300"
             onClick={toggleBarcodeInput}
             title="Scan Barcode"
           >
@@ -50,11 +50,11 @@ const ProductSearch = ({ onSearch, barcodeInput, setBarcodeInput, onBarcodeSubmi
       ) : (
         <form onSubmit={onBarcodeSubmit} className="relative">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <Barcode className="h-5 w-5 text-gray-400" />
+            <Barcode className="h-5 w-5 text-gray-400 dark:text-gray-500" />
           </div>
           <input
             type="text"
-            className="input pl-10 w-full bg-primary-50 border-primary-200"
+            className="input pl-10 w-full bg-primary-50 dark:bg-primary-900/30 border-primary-200 dark:border-primary-800 dark:text-dark-text-primary dark:placeholder-gray-500"
             placeholder="Scan or enter barcode..."
             value={barcodeInput}
             onChange={(e) => setBarcodeInput(e.target.value)}
@@ -62,7 +62,7 @@ const ProductSearch = ({ onSearch, barcodeInput, setBarcodeInput, onBarcodeSubmi
           />
           <button
             type="button"
-            className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600"
+            className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300"
             onClick={toggleBarcodeInput}
             title="Search by Name"
           >
