@@ -96,16 +96,16 @@ const PaymentModal = ({ cart, totals, onClose, onComplete, cashier }) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-      <div className="bg-white rounded-lg shadow-lg max-w-2xl w-full max-h-[90vh] overflow-hidden flex flex-col">
+      <div className="bg-white dark:bg-dark-card rounded-lg shadow-lg max-w-2xl w-full max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="px-6 py-4 border-b flex items-center justify-between bg-gray-50">
-          <h2 className="text-xl font-bold text-gray-900 flex items-center">
+        <div className="px-6 py-4 border-b dark:border-gray-700 flex items-center justify-between bg-gray-50 dark:bg-gray-800/50">
+          <h2 className="text-xl font-bold text-gray-900 dark:text-dark-text-primary flex items-center">
             <CreditCard className="h-5 w-5 mr-2" />
             Payment
           </h2>
           <button
             onClick={onClose}
-            className="text-gray-500 hover:text-gray-700"
+            className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
             disabled={createOrderMutation.isPending}
           >
             <X size={24} />
@@ -115,11 +115,11 @@ const PaymentModal = ({ cart, totals, onClose, onComplete, cashier }) => {
         {/* Success message */}
         {orderCompleted && (
           <div className="flex-1 flex flex-col items-center justify-center p-6 text-center">
-            <div className="h-16 w-16 rounded-full bg-success-100 flex items-center justify-center mb-4">
-              <Check className="h-8 w-8 text-success-600" />
+            <div className="h-16 w-16 rounded-full bg-success-100 dark:bg-success-900/30 flex items-center justify-center mb-4">
+              <Check className="h-8 w-8 text-success-600 dark:text-success-400" />
             </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">Payment Successful!</h3>
-            <p className="text-gray-600 mb-6">Order #{orderNumber} has been placed successfully.</p>
+            <h3 className="text-xl font-bold text-gray-900 dark:text-dark-text-primary mb-2">Payment Successful!</h3>
+            <p className="text-gray-600 dark:text-dark-text-secondary mb-6">Order #{orderNumber} has been placed successfully.</p>
             <div className="flex space-x-4">
               <button onClick={() => onComplete()} className="btn btn-primary px-4 py-2">
                 New Sale
@@ -137,14 +137,14 @@ const PaymentModal = ({ cart, totals, onClose, onComplete, cashier }) => {
 
         {/* Error message */}
         {createOrderMutation.isError && !orderCompleted && (
-          <div className="bg-danger-50 border-b border-danger-200 p-4">
+          <div className="bg-danger-50 dark:bg-danger-900/30 border-b border-danger-200 dark:border-danger-800 p-4">
             <div className="flex">
               <div className="flex-shrink-0">
                 <AlertCircle className="h-5 w-5 text-danger-400" />
               </div>
               <div className="ml-3">
-                <h3 className="text-sm font-medium text-danger-800">Error processing payment</h3>
-                <div className="mt-2 text-sm text-danger-700">
+                <h3 className="text-sm font-medium text-danger-800 dark:text-danger-200">Error processing payment</h3>
+                <div className="mt-2 text-sm text-danger-700 dark:text-danger-300">
                   <p>{createOrderMutation.error?.message || 'An unexpected error occurred'}</p>
                 </div>
               </div>
@@ -158,15 +158,15 @@ const PaymentModal = ({ cart, totals, onClose, onComplete, cashier }) => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Payment Methods */}
               <div>
-                <h3 className="text-lg font-medium text-gray-900 mb-4">Payment Method</h3>
+                <h3 className="text-lg font-medium text-gray-900 dark:text-dark-text-primary mb-4">Payment Method</h3>
                 <div className="space-y-3">
                   {paymentMethods.map((method) => (
                     <label
                       key={method.id}
-                      className={`flex items-center p-3 border rounded-lg cursor-pointer transition-colors ${
+                      className={`flex items-center p-3 border dark:border-gray-700 rounded-lg cursor-pointer transition-colors ${
                         paymentMethod === method.id
-                          ? 'bg-primary-50 border-primary-200'
-                          : 'bg-white hover:bg-gray-50'
+                          ? 'bg-primary-50 dark:bg-primary-900/30 border-primary-200 dark:border-primary-800'
+                          : 'bg-white dark:bg-dark-card hover:bg-gray-50 dark:hover:bg-gray-800'
                       }`}
                     >
                       <input
@@ -175,13 +175,13 @@ const PaymentModal = ({ cart, totals, onClose, onComplete, cashier }) => {
                         value={method.id}
                         checked={paymentMethod === method.id}
                         onChange={() => setPaymentMethod(method.id)}
-                        className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300"
+                        className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 dark:border-gray-600"
                       />
                       <div className="ml-3 flex items-center">
-                        <span className="h-8 w-8 flex items-center justify-center text-gray-600">
+                        <span className="h-8 w-8 flex items-center justify-center text-gray-600 dark:text-gray-400">
                           {method.icon}
                         </span>
-                        <span className="ml-2 text-gray-700">{method.name}</span>
+                        <span className="ml-2 text-gray-700 dark:text-dark-text-primary">{method.name}</span>
                       </div>
                     </label>
                   ))}
@@ -193,18 +193,18 @@ const PaymentModal = ({ cart, totals, onClose, onComplete, cashier }) => {
                     <div>
                       <label
                         htmlFor="amountReceived"
-                        className="block text-sm font-medium text-gray-700 mb-1"
+                        className="block text-sm font-medium text-gray-700 dark:text-dark-text-primary mb-1"
                       >
                         Amount Received
                       </label>
                       <div className="relative">
                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                          <span className="text-gray-500">₨</span>
+                          <span className="text-gray-500 dark:text-gray-400">₨</span>
                         </div>
                         <input
                           id="amountReceived"
                           type="text"
-                          className="input pl-8 w-full"
+                          className="input pl-8 w-full dark:bg-dark-card dark:border-gray-700 dark:text-dark-text-primary"
                           placeholder="Enter amount"
                           value={amountReceived}
                           onChange={handleAmountReceivedChange}
@@ -225,22 +225,22 @@ const PaymentModal = ({ cart, totals, onClose, onComplete, cashier }) => {
                       ))}
                     </div>
 
-                    <div className="bg-gray-50 p-3 rounded-lg border">
+                    <div className="bg-gray-50 dark:bg-gray-800/50 p-3 rounded-lg border dark:border-gray-700">
                       <div className="flex justify-between">
-                        <span className="text-gray-600">Total</span>
-                        <span className="font-medium">₨{totals.total.toLocaleString()}</span>
+                        <span className="text-gray-600 dark:text-dark-text-secondary">Total</span>
+                        <span className="font-medium dark:text-dark-text-primary">₨{totals.total.toLocaleString()}</span>
                       </div>
 
                       <div className="flex justify-between mt-2">
-                        <span className="text-gray-600">Received</span>
-                        <span className="font-medium">
+                        <span className="text-gray-600 dark:text-dark-text-secondary">Received</span>
+                        <span className="font-medium dark:text-dark-text-primary">
                           {amountReceived ? `₨${parseFloat(amountReceived).toLocaleString()}` : '-'}
                         </span>
                       </div>
 
-                      <div className="flex justify-between mt-2 pt-2 border-t">
-                        <span className="font-medium text-gray-700">Change</span>
-                        <span className="font-bold">₨{calculateChange().toLocaleString()}</span>
+                      <div className="flex justify-between mt-2 pt-2 border-t dark:border-gray-700">
+                        <span className="font-medium text-gray-700 dark:text-dark-text-primary">Change</span>
+                        <span className="font-bold dark:text-dark-text-primary">₨{calculateChange().toLocaleString()}</span>
                       </div>
                     </div>
                   </div>
@@ -250,7 +250,7 @@ const PaymentModal = ({ cart, totals, onClose, onComplete, cashier }) => {
               {/* Customer Info & Order Summary */}
               <div>
                 {/* Customer Information */}
-                <h3 className="text-lg font-medium text-gray-900 mb-4">Customer Information</h3>
+                <h3 className="text-lg font-medium text-gray-900 dark:text-dark-text-primary mb-4">Customer Information</h3>
                 <div className="space-y-3 mb-6">
                   <div className="flex items-center">
                     <input
@@ -260,21 +260,21 @@ const PaymentModal = ({ cart, totals, onClose, onComplete, cashier }) => {
                       onChange={(e) =>
                         setCustomerInfo({ ...customerInfo, isGuest: e.target.checked })
                       }
-                      className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
+                      className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 dark:border-gray-600 rounded"
                     />
-                    <label htmlFor="isGuest" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="isGuest" className="ml-2 block text-sm text-gray-700 dark:text-dark-text-primary">
                       Guest Checkout
                     </label>
                   </div>
 
                   {!customerInfo.isGuest && (
-                    <div className="bg-gray-50 p-4 rounded-lg border">
+                    <div className="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-lg border dark:border-gray-700">
                       <div className="flex items-start">
-                        <User className="h-5 w-5 text-gray-400 mt-0.5" />
+                        <User className="h-5 w-5 text-gray-400 dark:text-gray-500 mt-0.5" />
                         <div className="ml-3">
                           <input
                             type="text"
-                            className="input w-full mb-2"
+                            className="input w-full mb-2 dark:bg-dark-card dark:border-gray-700 dark:text-dark-text-primary"
                             placeholder="Customer name"
                             value={customerInfo.name}
                             onChange={(e) =>
@@ -283,7 +283,7 @@ const PaymentModal = ({ cart, totals, onClose, onComplete, cashier }) => {
                           />
                           <input
                             type="email"
-                            className="input w-full mb-2"
+                            className="input w-full mb-2 dark:bg-dark-card dark:border-gray-700 dark:text-dark-text-primary"
                             placeholder="Email"
                             value={customerInfo.email}
                             onChange={(e) =>
@@ -292,7 +292,7 @@ const PaymentModal = ({ cart, totals, onClose, onComplete, cashier }) => {
                           />
                           <input
                             type="tel"
-                            className="input w-full"
+                            className="input w-full dark:bg-dark-card dark:border-gray-700 dark:text-dark-text-primary"
                             placeholder="Phone"
                             value={customerInfo.phone}
                             onChange={(e) =>
@@ -307,13 +307,13 @@ const PaymentModal = ({ cart, totals, onClose, onComplete, cashier }) => {
 
                 {/* Order Notes */}
                 <div className="mb-6">
-                  <label htmlFor="notes" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="notes" className="block text-sm font-medium text-gray-700 dark:text-dark-text-primary mb-1">
                     Order Notes
                   </label>
                   <textarea
                     id="notes"
                     rows={3}
-                    className="input w-full"
+                    className="input w-full dark:bg-dark-card dark:border-gray-700 dark:text-dark-text-primary"
                     placeholder="Add any special instructions or notes..."
                     value={orderNotes}
                     onChange={(e) => setOrderNotes(e.target.value)}
@@ -321,26 +321,26 @@ const PaymentModal = ({ cart, totals, onClose, onComplete, cashier }) => {
                 </div>
 
                 {/* Order Summary */}
-                <div className="bg-gray-50 p-4 rounded-lg border">
-                  <h4 className="font-medium text-gray-900 mb-2">Order Summary</h4>
+                <div className="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-lg border dark:border-gray-700">
+                  <h4 className="font-medium text-gray-900 dark:text-dark-text-primary mb-2">Order Summary</h4>
                   <div className="space-y-1 mb-3">
                     <div className="flex justify-between text-sm">
-                      <span className="text-gray-600">Items</span>
-                      <span>{totals.itemCount}</span>
+                      <span className="text-gray-600 dark:text-dark-text-secondary">Items</span>
+                      <span className="dark:text-dark-text-primary">{totals.itemCount}</span>
                     </div>
                     <div className="flex justify-between text-sm">
-                      <span className="text-gray-600">Subtotal</span>
-                      <span>₨{totals.subtotal.toLocaleString()}</span>
+                      <span className="text-gray-600 dark:text-dark-text-secondary">Subtotal</span>
+                      <span className="dark:text-dark-text-primary">₨{totals.subtotal.toLocaleString()}</span>
                     </div>
                     <div className="flex justify-between text-sm">
-                      <span className="text-gray-600">Tax (17%)</span>
-                      <span>₨{totals.tax.toLocaleString()}</span>
+                      <span className="text-gray-600 dark:text-dark-text-secondary">Tax (17%)</span>
+                      <span className="dark:text-dark-text-primary">₨{totals.tax.toLocaleString()}</span>
                     </div>
                   </div>
-                  <div className="pt-2 border-t">
+                  <div className="pt-2 border-t dark:border-gray-700">
                     <div className="flex justify-between font-bold">
-                      <span>Total</span>
-                      <span>₨{totals.total.toLocaleString()}</span>
+                      <span className="dark:text-dark-text-primary">Total</span>
+                      <span className="dark:text-dark-text-primary">₨{totals.total.toLocaleString()}</span>
                     </div>
                   </div>
                 </div>
@@ -351,7 +351,7 @@ const PaymentModal = ({ cart, totals, onClose, onComplete, cashier }) => {
 
         {/* Footer */}
         {!orderCompleted && (
-          <div className="px-6 py-4 border-t bg-gray-50 flex items-center justify-end gap-3">
+          <div className="px-6 py-4 border-t dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50 flex items-center justify-end gap-3">
             <button
               onClick={onClose}
               className="btn btn-default px-4 py-2"

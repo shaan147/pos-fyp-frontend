@@ -99,10 +99,10 @@ const ReportDateFilter = ({ dateRange, onDateRangeChange }) => {
           </button>
 
           {isOpen && (
-            <div className="absolute mt-2 right-0 z-10 w-72 bg-white border border-gray-200 rounded-lg shadow-lg p-4">
+            <div className="absolute mt-2 right-0 z-10 w-72 bg-white dark:bg-dark-card border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg p-4">
               <div className="space-y-4">
                 <div>
-                  <h3 className="text-sm font-medium text-gray-700 mb-2">Predefined Ranges</h3>
+                  <h3 className="text-sm font-medium text-gray-700 dark:text-dark-text-primary mb-2">Predefined Ranges</h3>
                   <div className="grid grid-cols-2 gap-2">
                     {predefinedRanges.map((range) => (
                       <button
@@ -118,25 +118,25 @@ const ReportDateFilter = ({ dateRange, onDateRangeChange }) => {
                 </div>
 
                 <div>
-                  <h3 className="text-sm font-medium text-gray-700 mb-2">Custom Range</h3>
+                  <h3 className="text-sm font-medium text-gray-700 dark:text-dark-text-primary mb-2">Custom Range</h3>
                   <div className="grid grid-cols-2 gap-2">
                     <div>
-                      <label className="block text-xs text-gray-500 mb-1">Start Date</label>
+                      <label className="block text-xs text-gray-500 dark:text-gray-400 mb-1">Start Date</label>
                       <input
                         type="date"
                         name="startDate"
-                        className="input w-full"
+                        className="input w-full dark:bg-dark-card dark:border-gray-700 dark:text-dark-text-primary"
                         value={dateRange.startDate}
                         onChange={handleDateChange}
                         max={dateRange.endDate}
                       />
                     </div>
                     <div>
-                      <label className="block text-xs text-gray-500 mb-1">End Date</label>
+                      <label className="block text-xs text-gray-500 dark:text-gray-400 mb-1">End Date</label>
                       <input
                         type="date"
                         name="endDate"
-                        className="input w-full"
+                        className="input w-full dark:bg-dark-card dark:border-gray-700 dark:text-dark-text-primary"
                         value={dateRange.endDate}
                         onChange={handleDateChange}
                         min={dateRange.startDate}
@@ -161,7 +161,7 @@ const ReportDateFilter = ({ dateRange, onDateRangeChange }) => {
         </div>
 
         <div className="flex-1 flex justify-end">
-          <div className="text-sm text-gray-500">
+          <div className="text-sm text-gray-500 dark:text-dark-text-secondary">
             Showing data for {dayjs(dateRange.startDate).format('MMM D, YYYY')} - {dayjs(dateRange.endDate).format('MMM D, YYYY')}
           </div>
         </div>

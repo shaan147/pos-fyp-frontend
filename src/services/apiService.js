@@ -38,9 +38,14 @@ api.interceptors.response.use(
     
     // Handle 401 Unauthorized errors
     if (error.response?.status === 401) {
-      // Could trigger a logout action here
-      localStorage.removeItem('token');
-      window.location.href = '/login';
+      // Don't redirect for login attempts
+      const isLoginRequest = error.config.url.includes('/auth/login');
+      
+      if (!isLoginRequest) {
+        // Only remove token and redirect for non-login requests
+        localStorage.removeItem('token');
+        window.location.href = '/login';
+      }
     }
     
     return Promise.reject({ message, status: error.response?.status });

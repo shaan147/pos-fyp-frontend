@@ -68,17 +68,17 @@ const SecuritySettings = () => {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <h2 className="text-lg font-medium text-gray-900 mb-6">Security Settings</h2>
+      <h2 className="text-lg font-medium text-gray-900 dark:text-dark-text-primary mb-6">Security Settings</h2>
 
       {/* Success message */}
       {successMessage && (
-        <div className="mb-6 bg-success-50 border border-success-200 rounded-lg p-4">
+        <div className="mb-6 bg-success-50 dark:bg-success-900/30 border border-success-200 dark:border-success-800 rounded-lg p-4">
           <div className="flex">
             <div className="flex-shrink-0">
-              <Check className="h-5 w-5 text-success-400" />
+              <Check className="h-5 w-5 text-success-400 dark:text-success-300" />
             </div>
             <div className="ml-3">
-              <p className="text-sm font-medium text-success-800">{successMessage}</p>
+              <p className="text-sm font-medium text-success-800 dark:text-success-200">{successMessage}</p>
             </div>
           </div>
         </div>
@@ -86,14 +86,14 @@ const SecuritySettings = () => {
 
       {/* Error message */}
       {updatePasswordMutation.isError && (
-        <div className="mb-6 bg-danger-50 border border-danger-200 rounded-lg p-4">
+        <div className="mb-6 bg-danger-50 dark:bg-danger-900/30 border border-danger-200 dark:border-danger-800 rounded-lg p-4">
           <div className="flex">
             <div className="flex-shrink-0">
-              <AlertCircle className="h-5 w-5 text-danger-400" />
+              <AlertCircle className="h-5 w-5 text-danger-400 dark:text-danger-300" />
             </div>
             <div className="ml-3">
-              <h3 className="text-sm font-medium text-danger-800">Error updating password</h3>
-              <div className="mt-2 text-sm text-danger-700">
+              <h3 className="text-sm font-medium text-danger-800 dark:text-danger-200">Error updating password</h3>
+              <div className="mt-2 text-sm text-danger-700 dark:text-danger-300">
                 <p>{updatePasswordMutation.error?.message || 'An unexpected error occurred'}</p>
               </div>
             </div>
@@ -101,14 +101,14 @@ const SecuritySettings = () => {
         </div>
       )}
 
-      <div className="bg-primary-50 border border-primary-200 rounded-lg p-4 mb-6">
+      <div className="bg-primary-50 dark:bg-primary-900/30 border border-primary-200 dark:border-primary-800 rounded-lg p-4 mb-6">
         <div className="flex">
           <div className="flex-shrink-0">
-            <ShieldCheck className="h-5 w-5 text-primary-400" />
+            <ShieldCheck className="h-5 w-5 text-primary-400 dark:text-primary-300" />
           </div>
           <div className="ml-3">
-            <h3 className="text-sm font-medium text-primary-800">Password Security</h3>
-            <div className="mt-2 text-sm text-primary-700">
+            <h3 className="text-sm font-medium text-primary-800 dark:text-primary-200">Password Security</h3>
+            <div className="mt-2 text-sm text-primary-700 dark:text-primary-300">
               <p>
                 Your password should be at least 6 characters long and contain at least one
                 uppercase letter, one lowercase letter, one number, and one special character.
@@ -124,7 +124,7 @@ const SecuritySettings = () => {
           <div>
             <label
               htmlFor="currentPassword"
-              className="block text-sm font-medium text-gray-700 mb-1"
+              className="block text-sm font-medium text-gray-700 dark:text-dark-text-primary mb-1"
             >
               Current Password <span className="text-danger-500">*</span>
             </label>
@@ -132,46 +132,50 @@ const SecuritySettings = () => {
               <input
                 id="currentPassword"
                 type={showCurrentPassword ? 'text' : 'password'}
-                className={`input w-full pr-10 ${errors.currentPassword ? 'border-danger-500 focus-visible:ring-danger-500' : ''}`}
+                className={`input w-full pr-10 dark:bg-dark-card dark:border-gray-700 dark:text-dark-text-primary ${
+                  errors.currentPassword ? 'border-danger-500 focus-visible:ring-danger-500' : ''
+                }`}
                 placeholder="Enter your current password"
                 {...register('currentPassword')}
               />
               <button
                 type="button"
-                className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-500"
+                className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400"
                 onClick={() => setShowCurrentPassword(!showCurrentPassword)}
               >
                 {showCurrentPassword ? <EyeOff size={20} /> : <Eye size={20} />}
               </button>
             </div>
             {errors.currentPassword && (
-              <p className="mt-1 text-sm text-danger-600">{errors.currentPassword.message}</p>
+              <p className="mt-1 text-sm text-danger-600 dark:text-danger-400">{errors.currentPassword.message}</p>
             )}
           </div>
 
           {/* New Password */}
           <div>
-            <label htmlFor="newPassword" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="newPassword" className="block text-sm font-medium text-gray-700 dark:text-dark-text-primary mb-1">
               New Password <span className="text-danger-500">*</span>
             </label>
             <div className="relative">
               <input
                 id="newPassword"
                 type={showNewPassword ? 'text' : 'password'}
-                className={`input w-full pr-10 ${errors.newPassword ? 'border-danger-500 focus-visible:ring-danger-500' : ''}`}
+                className={`input w-full pr-10 dark:bg-dark-card dark:border-gray-700 dark:text-dark-text-primary ${
+                  errors.newPassword ? 'border-danger-500 focus-visible:ring-danger-500' : ''
+                }`}
                 placeholder="Enter your new password"
                 {...register('newPassword')}
               />
               <button
                 type="button"
-                className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-500"
+                className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400"
                 onClick={() => setShowNewPassword(!showNewPassword)}
               >
                 {showNewPassword ? <EyeOff size={20} /> : <Eye size={20} />}
               </button>
             </div>
             {errors.newPassword && (
-              <p className="mt-1 text-sm text-danger-600">{errors.newPassword.message}</p>
+              <p className="mt-1 text-sm text-danger-600 dark:text-danger-400">{errors.newPassword.message}</p>
             )}
           </div>
 
@@ -179,7 +183,7 @@ const SecuritySettings = () => {
           <div>
             <label
               htmlFor="confirmPassword"
-              className="block text-sm font-medium text-gray-700 mb-1"
+              className="block text-sm font-medium text-gray-700 dark:text-dark-text-primary mb-1"
             >
               Confirm New Password <span className="text-danger-500">*</span>
             </label>
@@ -187,20 +191,22 @@ const SecuritySettings = () => {
               <input
                 id="confirmPassword"
                 type={showConfirmPassword ? 'text' : 'password'}
-                className={`input w-full pr-10 ${errors.confirmPassword ? 'border-danger-500 focus-visible:ring-danger-500' : ''}`}
+                className={`input w-full pr-10 dark:bg-dark-card dark:border-gray-700 dark:text-dark-text-primary ${
+                  errors.confirmPassword ? 'border-danger-500 focus-visible:ring-danger-500' : ''
+                }`}
                 placeholder="Confirm your new password"
                 {...register('confirmPassword')}
               />
               <button
                 type="button"
-                className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-500"
+                className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400"
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
               >
                 {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
               </button>
             </div>
             {errors.confirmPassword && (
-              <p className="mt-1 text-sm text-danger-600">{errors.confirmPassword.message}</p>
+              <p className="mt-1 text-sm text-danger-600 dark:text-danger-400">{errors.confirmPassword.message}</p>
             )}
           </div>
         </div>

@@ -111,8 +111,8 @@ const Reports = () => {
     <div className="space-y-6">
       <div className="sm:flex sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Reports</h1>
-          <p className="mt-1 text-sm text-gray-500">
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-dark-text-primary">Reports</h1>
+          <p className="mt-1 text-sm text-gray-500 dark:text-dark-text-secondary">
             Analyze sales, inventory, and supplier performance
           </p>
         </div>
@@ -126,8 +126,8 @@ const Reports = () => {
       </div>
 
       {/* Report Navigation */}
-      <div className="bg-white rounded-lg border shadow-sm">
-        <div className="border-b">
+      <div className="bg-white dark:bg-dark-card rounded-lg border dark:border-gray-700 shadow-sm">
+        <div className="border-b dark:border-gray-700">
           <nav className="flex -mb-px overflow-x-auto">
             {reportTabs.map((tab) => {
               const Icon = tab.icon;
@@ -136,8 +136,8 @@ const Reports = () => {
                   key={tab.id}
                   className={`whitespace-nowrap py-4 px-6 border-b-2 font-medium text-sm ${
                     activeReport === tab.id
-                      ? 'border-primary-600 text-primary-600'
-                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                      ? 'border-primary-600 text-primary-600 dark:text-primary-400'
+                      : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600'
                   }`}
                   onClick={() => setActiveReport(tab.id)}
                 >
@@ -152,7 +152,7 @@ const Reports = () => {
         </div>
 
         {/* Date Filter */}
-        <div className="p-4 border-b bg-gray-50">
+        <div className="p-4 border-b dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
           <ReportDateFilter
             dateRange={dateRange}
             onDateRangeChange={handleDateRangeChange}
@@ -162,20 +162,20 @@ const Reports = () => {
         {/* Report Content */}
         <div className="p-6">
           {activeReportTab.isLoading ? (
-            <div className="flex justify-center items-center h-60">
+            <div className="flex justify-center items-center h-60 dark:bg-dark-card">
               <LoadingSpinner size="large" />
             </div>
           ) : activeReportTab.data ? (
             <activeReportTab.component data={activeReportTab.data} dateRange={dateRange} />
           ) : (
-            <div className="bg-danger-50 border border-danger-200 rounded-lg p-4">
+            <div className="bg-danger-50 dark:bg-danger-900/30 border border-danger-200 dark:border-danger-800 rounded-lg p-4">
               <div className="flex">
                 <div className="flex-shrink-0">
                   <AlertCircle className="h-5 w-5 text-danger-400" />
                 </div>
                 <div className="ml-3">
-                  <h3 className="text-sm font-medium text-danger-800">Error loading report data</h3>
-                  <div className="mt-2 text-sm text-danger-700">
+                  <h3 className="text-sm font-medium text-danger-800 dark:text-danger-200">Error loading report data</h3>
+                  <div className="mt-2 text-sm text-danger-700 dark:text-danger-300">
                     <p>There was an error loading the report data. Please try again.</p>
                   </div>
                 </div>

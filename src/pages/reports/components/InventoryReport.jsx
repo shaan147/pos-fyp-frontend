@@ -16,7 +16,6 @@ import {
   Package, 
   AlertCircle, 
   DollarSign, 
-  Tag, 
   Truck,
   Search
 } from 'lucide-react';
@@ -117,16 +116,16 @@ const InventoryReport = ({ data }) => {
   return (
     <div className="space-y-6">
       {/* Filters */}
-      <div className="bg-white rounded-lg border shadow-sm p-4">
+      <div className="bg-white dark:bg-dark-card rounded-lg border dark:border-gray-700 shadow-sm p-4">
         <div className="flex flex-col md:flex-row gap-4">
           <div className="w-full md:w-1/2">
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Search className="h-5 w-5 text-gray-400" />
+                <Search className="h-5 w-5 text-gray-400 dark:text-gray-500" />
               </div>
               <input
                 type="text"
-                className="input pl-10 w-full"
+                className="input pl-10 w-full dark:bg-dark-card dark:border-gray-700 dark:text-dark-text-primary"
                 placeholder="Search products..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
@@ -136,7 +135,7 @@ const InventoryReport = ({ data }) => {
           
           <div className="w-full md:w-1/2">
             <select
-              className="input w-full"
+              className="input w-full dark:bg-dark-card dark:border-gray-700 dark:text-dark-text-primary"
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
             >
@@ -152,42 +151,42 @@ const InventoryReport = ({ data }) => {
 
       {/* Summary Stats */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="bg-white rounded-lg border shadow-sm p-6">
+        <div className="bg-white dark:bg-dark-card rounded-lg border dark:border-gray-700 shadow-sm p-6">
           <div className="flex items-center">
-            <div className="p-2 rounded-full bg-primary-100 text-primary-600 mr-3">
+            <div className="p-2 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 mr-3">
               <Package size={20} />
             </div>
             <div>
-              <p className="text-sm font-medium text-gray-500">Total Products</p>
-              <p className="text-2xl font-semibold">{productData.length}</p>
+              <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Total Products</p>
+              <p className="text-2xl font-semibold dark:text-dark-text-primary">{productData.length}</p>
             </div>
           </div>
         </div>
         
-        <div className="bg-white rounded-lg border shadow-sm p-6">
+        <div className="bg-white dark:bg-dark-card rounded-lg border dark:border-gray-700 shadow-sm p-6">
           <div className="flex items-center">
-            <div className="p-2 rounded-full bg-success-100 text-success-600 mr-3">
+            <div className="p-2 rounded-full bg-success-100 dark:bg-success-900/30 text-success-600 dark:text-success-400 mr-3">
               <DollarSign size={20} />
             </div>
             <div>
-              <p className="text-sm font-medium text-gray-500">Total Stock Value</p>
-              <p className="text-2xl font-semibold">{formatCurrency(totalStockValue)}</p>
+              <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Total Stock Value</p>
+              <p className="text-2xl font-semibold dark:text-dark-text-primary">{formatCurrency(totalStockValue)}</p>
             </div>
           </div>
         </div>
         
-        <div className="bg-white rounded-lg border shadow-sm p-6">
+        <div className="bg-white dark:bg-dark-card rounded-lg border dark:border-gray-700 shadow-sm p-6">
           <div className="flex items-center">
-            <div className="p-2 rounded-full bg-warning-100 text-warning-600 mr-3">
+            <div className="p-2 rounded-full bg-warning-100 dark:bg-warning-900/30 text-warning-600 dark:text-warning-400 mr-3">
               <AlertCircle size={20} />
             </div>
             <div>
-              <p className="text-sm font-medium text-gray-500">Low Stock Items</p>
-              <p className="text-2xl font-semibold">{lowStockData.length}</p>
+              <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Low Stock Items</p>
+              <p className="text-2xl font-semibold dark:text-dark-text-primary">{lowStockData.length}</p>
               {lowStockData.length > 0 && (
                 <Link 
                   to="/products/lowstock" 
-                  className="text-xs text-primary-600 hover:underline"
+                  className="text-xs text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300"
                 >
                   View items
                 </Link>
@@ -200,8 +199,8 @@ const InventoryReport = ({ data }) => {
       {/* Charts Row */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Product Categories Chart */}
-        <div className="bg-white rounded-lg border shadow-sm p-6">
-          <h3 className="text-lg font-medium text-gray-900 mb-4">Product Categories</h3>
+        <div className="bg-white dark:bg-dark-card rounded-lg border dark:border-gray-700 shadow-sm p-6">
+          <h3 className="text-lg font-medium text-gray-900 dark:text-dark-text-primary mb-4">Product Categories</h3>
           <div className="h-80">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
@@ -229,8 +228,8 @@ const InventoryReport = ({ data }) => {
         </div>
 
         {/* Stock Status Chart */}
-        <div className="bg-white rounded-lg border shadow-sm p-6">
-          <h3 className="text-lg font-medium text-gray-900 mb-4">Stock Status</h3>
+        <div className="bg-white dark:bg-dark-card rounded-lg border dark:border-gray-700 shadow-sm p-6">
+          <h3 className="text-lg font-medium text-gray-900 dark:text-dark-text-primary mb-4">Stock Status</h3>
           <div className="h-80">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
@@ -259,8 +258,8 @@ const InventoryReport = ({ data }) => {
       </div>
 
       {/* Top Products by Value - Using BarChart instead of TreeMap */}
-      <div className="bg-white rounded-lg border shadow-sm p-6">
-        <h3 className="text-lg font-medium text-gray-900 mb-4">Top Products by Inventory Value</h3>
+      <div className="bg-white dark:bg-dark-card rounded-lg border dark:border-gray-700 shadow-sm p-6">
+        <h3 className="text-lg font-medium text-gray-900 dark:text-dark-text-primary mb-4">Top Products by Inventory Value</h3>
         <div className="h-80">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart
@@ -290,67 +289,67 @@ const InventoryReport = ({ data }) => {
             </BarChart>
           </ResponsiveContainer>
         </div>
-        <p className="text-xs text-gray-500 mt-2">Showing top 10 products by inventory value</p>
+        <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">Showing top 10 products by inventory value</p>
       </div>
 
       {/* Low Stock Items */}
       {lowStockData.length > 0 && (
-        <div className="bg-white rounded-lg border shadow-sm p-6">
+        <div className="bg-white dark:bg-dark-card rounded-lg border dark:border-gray-700 shadow-sm p-6">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-medium text-gray-900">Low Stock Items</h3>
+            <h3 className="text-lg font-medium text-gray-900 dark:text-dark-text-primary">Low Stock Items</h3>
             <Link
               to="/products/lowstock"
-              className="text-sm font-medium text-primary-600 hover:text-primary-800"
+              className="text-sm font-medium text-primary-600 dark:text-primary-400 hover:text-primary-800 dark:hover:text-primary-300"
             >
               View all
             </Link>
           </div>
 
           <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
+            <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+              <thead className="bg-gray-50 dark:bg-gray-800/50">
                 <tr>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Current Stock</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Min Stock</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Supplier</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Value</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Product</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Current Stock</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Min Stock</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Supplier</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Value</th>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
+              <tbody className="bg-white dark:bg-dark-card divide-y divide-gray-200 dark:divide-gray-700">
                 {lowStockData.slice(0, 5).map((product) => (
-                  <tr key={product._id} className="hover:bg-gray-50">
+                  <tr key={product._id} className="hover:bg-gray-50 dark:hover:bg-gray-800/50">
                     <td className="px-4 py-3 whitespace-nowrap">
                       <div className="flex items-center">
-                        <div className="h-8 w-8 flex-shrink-0 bg-gray-100 rounded-md flex items-center justify-center">
-                          <Package className="h-4 w-4 text-gray-400" />
+                        <div className="h-8 w-8 flex-shrink-0 bg-gray-100 dark:bg-gray-800 rounded-md flex items-center justify-center">
+                          <Package className="h-4 w-4 text-gray-400 dark:text-gray-500" />
                         </div>
                         <div className="ml-3">
                           <Link 
                             to={`/products/${product._id}`}
-                            className="text-sm font-medium text-gray-900 hover:text-primary-600"
+                            className="text-sm font-medium text-gray-900 dark:text-dark-text-primary hover:text-primary-600 dark:hover:text-primary-400"
                           >
                             {product.name}
                           </Link>
-                          <div className="text-xs text-gray-500">{product.productId}</div>
+                          <div className="text-xs text-gray-500 dark:text-dark-text-secondary">{product.productId}</div>
                         </div>
                       </div>
                     </td>
                     <td className="px-4 py-3 whitespace-nowrap">
-                      <span className="text-sm text-danger-600 font-medium">
+                      <span className="text-sm text-danger-600 dark:text-danger-400 font-medium">
                         {product.stockQuantity} {product.unit}
                       </span>
                     </td>
-                    <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-500 dark:text-dark-text-secondary">
                       {product.minStockLevel} {product.unit}
                     </td>
-                    <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-500 dark:text-dark-text-secondary">
                       <div className="flex items-center">
-                        <Truck className="h-4 w-4 mr-1 text-gray-400" />
+                        <Truck className="h-4 w-4 mr-1 text-gray-400 dark:text-gray-500" />
                         <span>{product.supplierName || 'Unknown'}</span>
                       </div>
                     </td>
-                    <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
+                    <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-900 dark:text-dark-text-primary">
                       {formatCurrency(product.costPrice * product.stockQuantity)}
                     </td>
                   </tr>

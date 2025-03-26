@@ -4,7 +4,8 @@ import { useAuth } from '@hooks/useAuth';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Eye, EyeOff, AlertCircle } from 'lucide-react';
+import { Eye, EyeOff } from 'lucide-react';
+import toast from 'react-hot-toast';
 import LoadingSpinner from '@components/common/LoadingSpinner';
 
 // Define validation schema
@@ -18,7 +19,6 @@ const Login = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [loginError, setLoginError] = useState('');
 
   const {
     register,
@@ -34,17 +34,16 @@ const Login = () => {
 
   const onSubmit = async (data) => {
     setIsLoading(true);
-    setLoginError('');
 
     try {
       const result = await login(data);
       if (result.success) {
         navigate('/dashboard');
       } else {
-        setLoginError(result.error || 'Login failed. Please try again.');
+        toast.error(result.error || 'Login failed. Please try again.');
       }
     } catch (error) {
-      setLoginError('An unexpected error occurred. Please try again.');
+      toast.error('An unexpected error occurred. Please try again.');
       console.error(error);
     } finally {
       setIsLoading(false);
@@ -57,13 +56,6 @@ const Login = () => {
         <h1 className="text-2xl font-bold text-gray-900 dark:text-dark-text-primary">Welcome back</h1>
         <p className="mt-2 text-sm text-gray-600 dark:text-dark-text-secondary">Sign in to your account to continue</p>
       </div>
-
-      {loginError && (
-        <div className="mb-4 p-3 bg-danger-50 dark:bg-danger-900/30 border border-danger-200 dark:border-danger-800 text-danger-700 dark:text-danger-300 rounded-md flex items-center">
-          <AlertCircle size={16} className="mr-2 flex-shrink-0" />
-          <span className="text-sm">{loginError}</span>
-        </div>
-      )}
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <div>

@@ -31,7 +31,7 @@ const Settings = () => {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-2xl font-bold text-gray-900 mb-8">Settings</h1>
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-dark-text-primary mb-8">Settings</h1>
 
         <div className="flex flex-col md:flex-row gap-8">
           {/* Sidebar Navigation */}
@@ -45,13 +45,21 @@ const Settings = () => {
                     onClick={() => setActiveTab(tab.id)}
                     className={`w-full flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors ${
                       activeTab === tab.id
-                        ? 'bg-primary-50 text-primary-700'
-                        : 'text-gray-700 hover:bg-gray-50'
+                        ? 'bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400'
+                        : 'text-gray-700 dark:text-dark-text-primary hover:bg-gray-50 dark:hover:bg-gray-800/50'
                     }`}
                   >
-                    <Icon className="h-5 w-5 mr-3" />
+                    <Icon className={`h-5 w-5 mr-3 ${
+                      activeTab === tab.id
+                        ? 'text-primary-600 dark:text-primary-400'
+                        : 'text-gray-500 dark:text-gray-400'
+                    }`} />
                     {tab.name}
-                    <ChevronRight className="h-4 w-4 ml-auto" />
+                    <ChevronRight className={`h-4 w-4 ml-auto ${
+                      activeTab === tab.id
+                        ? 'text-primary-600 dark:text-primary-400'
+                        : 'text-gray-400 dark:text-gray-500'
+                    }`} />
                   </button>
                 );
               })}

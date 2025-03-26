@@ -83,50 +83,50 @@ const SalesReport = ({ data, dateRange }) => {
     <div className="space-y-6">
       {/* Summary Stats */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-white rounded-lg border shadow-sm p-6">
+        <div className="bg-white dark:bg-dark-card rounded-lg border dark:border-gray-700 shadow-sm p-6">
           <div className="flex items-center">
-            <div className="p-2 rounded-full bg-primary-100 text-primary-600 mr-3">
+            <div className="p-2 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 mr-3">
               <DollarSign size={20} />
             </div>
             <div>
-              <p className="text-sm font-medium text-gray-500">Total Revenue</p>
-              <p className="text-2xl font-semibold">{formatCurrency(revenue)}</p>
+              <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Total Revenue</p>
+              <p className="text-2xl font-semibold dark:text-dark-text-primary">{formatCurrency(revenue)}</p>
             </div>
           </div>
         </div>
         
-        <div className="bg-white rounded-lg border shadow-sm p-6">
+        <div className="bg-white dark:bg-dark-card rounded-lg border dark:border-gray-700 shadow-sm p-6">
           <div className="flex items-center">
-            <div className="p-2 rounded-full bg-success-100 text-success-600 mr-3">
+            <div className="p-2 rounded-full bg-success-100 dark:bg-success-900/30 text-success-600 dark:text-success-400 mr-3">
               <ShoppingCart size={20} />
             </div>
             <div>
-              <p className="text-sm font-medium text-gray-500">Total Orders</p>
-              <p className="text-2xl font-semibold">{totalOrders}</p>
+              <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Total Orders</p>
+              <p className="text-2xl font-semibold dark:text-dark-text-primary">{totalOrders}</p>
             </div>
           </div>
         </div>
         
-        <div className="bg-white rounded-lg border shadow-sm p-6">
+        <div className="bg-white dark:bg-dark-card rounded-lg border dark:border-gray-700 shadow-sm p-6">
           <div className="flex items-center">
-            <div className="p-2 rounded-full bg-warning-100 text-warning-600 mr-3">
+            <div className="p-2 rounded-full bg-warning-100 dark:bg-warning-900/30 text-warning-600 dark:text-warning-400 mr-3">
               <TrendingUp size={20} />
             </div>
             <div>
-              <p className="text-sm font-medium text-gray-500">Average Order Value</p>
-              <p className="text-2xl font-semibold">{formatCurrency(avgOrderValue)}</p>
+              <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Average Order Value</p>
+              <p className="text-2xl font-semibold dark:text-dark-text-primary">{formatCurrency(avgOrderValue)}</p>
             </div>
           </div>
         </div>
         
-        <div className="bg-white rounded-lg border shadow-sm p-6">
+        <div className="bg-white dark:bg-dark-card rounded-lg border dark:border-gray-700 shadow-sm p-6">
           <div className="flex items-center">
-            <div className="p-2 rounded-full bg-secondary-100 text-secondary-600 mr-3">
+            <div className="p-2 rounded-full bg-secondary-100 dark:bg-secondary-900/30 text-secondary-600 dark:text-secondary-400 mr-3">
               <CreditCard size={20} />
             </div>
             <div>
-              <p className="text-sm font-medium text-gray-500">Most Popular Payment</p>
-              <p className="text-2xl font-semibold">
+              <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Most Popular Payment</p>
+              <p className="text-2xl font-semibold dark:text-dark-text-primary">
                 {ordersByPaymentMethod && ordersByPaymentMethod.length > 0 
                   ? paymentMethodNames[ordersByPaymentMethod[0]._id] || ordersByPaymentMethod[0]._id
                   : 'N/A'}
@@ -137,9 +137,9 @@ const SalesReport = ({ data, dateRange }) => {
       </div>
 
       {/* Chart Type Selection */}
-      <div className="bg-white rounded-lg border shadow-sm p-4">
+      <div className="bg-white dark:bg-dark-card rounded-lg border dark:border-gray-700 shadow-sm p-4">
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-medium text-gray-900">Sales Trend</h2>
+          <h2 className="text-lg font-medium text-gray-900 dark:text-dark-text-primary">Sales Trend</h2>
           <div className="flex items-center space-x-2">
             <button
               onClick={() => setChartType('daily')}
@@ -164,8 +164,8 @@ const SalesReport = ({ data, dateRange }) => {
       </div>
 
       {/* Sales Trend Chart */}
-      <div className="bg-white rounded-lg border shadow-sm p-6">
-        <h3 className="text-lg font-medium text-gray-900 mb-4">Sales Trend</h3>
+      <div className="bg-white dark:bg-dark-card rounded-lg border dark:border-gray-700 shadow-sm p-6">
+        <h3 className="text-lg font-medium text-gray-900 dark:text-dark-text-primary mb-4">Sales Trend</h3>
         <div className="h-80">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart
@@ -206,8 +206,8 @@ const SalesReport = ({ data, dateRange }) => {
       {/* Other Charts and Data */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Order Status Distribution */}
-        <div className="bg-white rounded-lg border shadow-sm p-6">
-          <h3 className="text-lg font-medium text-gray-900 mb-4">Order Status Distribution</h3>
+        <div className="bg-white dark:bg-dark-card rounded-lg border dark:border-gray-700 shadow-sm p-6">
+          <h3 className="text-lg font-medium text-gray-900 dark:text-dark-text-primary mb-4">Order Status Distribution</h3>
           <div className="h-80">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
@@ -236,8 +236,8 @@ const SalesReport = ({ data, dateRange }) => {
         </div>
 
         {/* Payment Method Distribution */}
-        <div className="bg-white rounded-lg border shadow-sm p-6">
-          <h3 className="text-lg font-medium text-gray-900 mb-4">Payment Method Distribution</h3>
+        <div className="bg-white dark:bg-dark-card rounded-lg border dark:border-gray-700 shadow-sm p-6">
+          <h3 className="text-lg font-medium text-gray-900 dark:text-dark-text-primary mb-4">Payment Method Distribution</h3>
           <div className="h-80">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
@@ -269,8 +269,8 @@ const SalesReport = ({ data, dateRange }) => {
       </div>
 
       {/* Top Selling Products */}
-      <div className="bg-white rounded-lg border shadow-sm p-6">
-        <h3 className="text-lg font-medium text-gray-900 mb-4">Top Selling Products</h3>
+      <div className="bg-white dark:bg-dark-card rounded-lg border dark:border-gray-700 shadow-sm p-6">
+        <h3 className="text-lg font-medium text-gray-900 dark:text-dark-text-primary mb-4">Top Selling Products</h3>
         <div className="h-80">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart
